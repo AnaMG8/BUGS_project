@@ -1,7 +1,7 @@
 ###############################################################################
 # Script name: 03_clean_dataset_vi&vii_soil.R
-# Purpose: Validation and cleaning of Dataset vi: Deployment date for loggers; 
-# and Dataset vii: Soil temperature and moisture.
+# Purpose: Validation and cleaning of Dataset vi (Deployment date for loggers) 
+# and Dataset vii (Soil temperature and moisture)
 # Author: Morales-González et al.
 # Date: 18 December 2025
 # Description:
@@ -30,7 +30,7 @@ library(hms)
 ################################################
 
 # Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/Scientific_Data_Inv/"
+pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
 
 # Choose here whether to remove outliers using myClim package or not
 outliers_myClim <- TRUE

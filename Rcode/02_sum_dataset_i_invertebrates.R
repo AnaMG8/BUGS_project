@@ -21,7 +21,7 @@ library(readxl)
 ##########################
 
 # Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/Scientific_Data_Inv/"
+pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
 
 ####################
 # LOAD CLEAN DATASET

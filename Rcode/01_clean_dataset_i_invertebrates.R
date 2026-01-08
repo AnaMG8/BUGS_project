@@ -26,7 +26,7 @@ library(stringdist)
 ###########################################
 
 # Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/Scientific_Data_Inv/"
+pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
 
 # Define study period (accounting for standard and subterranean sampling)
 startDate <- "2023-08-02"
