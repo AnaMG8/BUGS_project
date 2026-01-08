@@ -1,0 +1,18 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Word temporary files
+~$*.docx
+
+# Ignore R history files
+.Rhistory
+
+# Ignore large raw datasets
+raw_datasets/camera_traps/TT_output_imagerow_DF.csv
+
+# Ignore folders that are not relevant to the project
+notes/
+
+
+
+

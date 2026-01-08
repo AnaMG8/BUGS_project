@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1UREhfs756XjnmyNQtCwz1eM6nhzLt3w9">
+	<name>Gaia GPS Export</name>
+	<gx:CascadingStyle kml:id="__managed_style_4C2900FDC537927B349F">
+		<Style>
+			<IconStyle>
+				<scale>1.56</scale>
+				<Icon>
+					<href>data:image/png;base64,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</href>
+				</Icon>
+				<hotSpot x="20" y="62" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_3D8AA38EEA37927B349F">
+		<Style>
+			<IconStyle>
+				<scale>1.3</scale>
+				<Icon>
+					<href>data:image/png;base64,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</href>
+				</Icon>
+				<hotSpot x="20" y="62" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_2CBA69C21237927B349F">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_3D8AA38EEA37927B349F</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_4C2900FDC537927B349F</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_156E45B3F137927B349F">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_02ECAC204337927B349F">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_008F7861BD37927B349E">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_02ECAC204337927B349F</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_156E45B3F137927B349F</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder id="54702A8BE1000001">
+		<name>Waypoints</name>
+		<styleUrl>#__managed_style_008F7861BD37927B349E</styleUrl>
+		<Placemark id="54702A8BE1000002">
+			<name>J13L03</name>
+			<description><![CDATA[Location: -26,97839, 21,81450<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 16:02:33 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8145,-26.97839,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000003">
+			<name>L15L7</name>
+			<description><![CDATA[Location: -26,98958, 21,83811<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:28:54 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83811,-26.98958,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000004">
+			<name>K18L04</name>
+			<description><![CDATA[Location: -26,97526, 21,87299<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:39:26 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87299,-26.97526,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000005">
+			<name>P15L08</name>
+			<description><![CDATA[Location: -27,02123, 21,85152<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:13:03 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85152,-27.02123,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000006">
+			<name>L17L08</name>
+			<description><![CDATA[Location: -26,98484, 21,86139<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 13:39:32 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86139,-26.98484,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000007">
+			<name>H15L06</name>
+			<description><![CDATA[Location: -26,95465, 21,82877<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 11:55:47 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82877,-26.95465,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000008">
+			<name>K18L10</name>
+			<description><![CDATA[Location: -26,97417, 21,87289<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:08:37 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87289,-26.97417,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000009">
+			<name>J13L07</name>
+			<description><![CDATA[Location: -26,97770, 21,81454<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 15:33:34 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81454,-26.9777,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100000A">
+			<name>L17L01</name>
+			<description><![CDATA[Location: -26,98607, 21,86150<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 14:14:41 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8615,-26.98607000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100000B">
+			<name>L15L09</name>
+			<description><![CDATA[Location: -26,98871, 21,83817<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 11:59:07 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83817,-26.98871,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100000C">
+			<name>J15L05</name>
+			<description><![CDATA[Location: -26,97319, 21,83578<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:18:02 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83578,-26.97319,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100000D">
+			<name>O18L04</name>
+			<description><![CDATA[Location: -27,01078, 21,88006<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 09:27:38 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88006,-27.01078,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100000E">
+			<name>D15L09</name>
+			<description><![CDATA[Location: -26,95462, 21,82704<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:34:42 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82704,-26.95462,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100000F">
+			<name>K18L07</name>
+			<description><![CDATA[Location: -26,97473, 21,87296<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:25:21 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87296,-26.97473,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000010">
+			<name>J15L10</name>
+			<description><![CDATA[Location: -26,97231, 21,83564<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 16:56:13 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83564,-26.97231,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000011">
+			<name>D15L04</name>
+			<description><![CDATA[Location: -26,95544, 21,82670<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:14:56 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8267,-26.95544,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000012">
+			<name>O18L08</name>
+			<description><![CDATA[Location: -27,00999, 21,88014<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 08:49:44 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88014,-27.00998999999999,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000013">
+			<name>Q17L08</name>
+			<description><![CDATA[Location: -27,03035, 21,87720<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:27:14 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8772,-27.03035,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000014">
+			<name>O18L10</name>
+			<description><![CDATA[Location: -27,00964, 21,88012<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 08:30:04 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88012,-27.00964,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000015">
+			<name>Q17L10</name>
+			<description><![CDATA[Location: -27,03002, 21,87732<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:15:12 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87732,-27.03002,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000016">
+			<name>L17L02</name>
+			<description><![CDATA[Location: -26,98588, 21,86149<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 14:08:27 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86149,-26.98588,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000017">
+			<name>H15L03</name>
+			<description><![CDATA[Location: -26,95518, 21,82870<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 12:21:10 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8287,-26.95518,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000018">
+			<name>L15L10</name>
+			<description><![CDATA[Location: -26,98848, 21,83820<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 11:54:24 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8382,-26.98848,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE1000019">
+			<name>J13L05</name>
+			<description><![CDATA[Location: -26,97805, 21,81454<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 15:46:01 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81454,-26.97805,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100001A">
+			<name>L17L10</name>
+			<description><![CDATA[Location: -26,98446, 21,86134<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 13:26:42 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86134,-26.98446,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100001B">
+			<name>L17L09</name>
+			<description><![CDATA[Location: -26,98464, 21,86138<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 13:32:16 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86138,-26.98464,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100001C">
+			<name>O18L03</name>
+			<description><![CDATA[Location: -27,01098, 21,88002<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 09:38:32 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88002,-27.01098,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100001D">
+			<name>H15L10</name>
+			<description><![CDATA[Location: -26,95395, 21,82885<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 11:17:46 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82885,-26.95395,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100001E">
+			<name>L15L03</name>
+			<description><![CDATA[Location: -26,98979, 21,83814<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:37:34 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83814,-26.98979,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE100001F">
+			<name>P15L05</name>
+			<description><![CDATA[Location: -27,02175, 21,85154<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:24:18 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85154,-27.02175,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000020">
+			<name>K18L05</name>
+			<description><![CDATA[Location: -26,97508, 21,87297<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:34:15 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87297,-26.97508,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000021">
+			<name>Q17L04</name>
+			<description><![CDATA[Location: -27,03103, 21,87698<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:50:43 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87698,-27.03103,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000022">
+			<name>L17L07</name>
+			<description><![CDATA[Location: -26,98500, 21,86139<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 13:43:50 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86139,-26.985,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000023">
+			<name>L15L08</name>
+			<description><![CDATA[Location: -26,98888, 21,83817<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:03:35 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83817,-26.98888,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000024">
+			<name>P15L10</name>
+			<description><![CDATA[Location: -27,02087, 21,85151<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:02:17 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85151,-27.02087,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000025">
+			<name>P15L02</name>
+			<description><![CDATA[Location: -27,02229, 21,85149<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:40:06 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85149,-27.02229,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000026">
+			<name>H15L02</name>
+			<description><![CDATA[Location: -26,95537, 21,82866<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 12:28:10 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82866,-26.95537,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000027">
+			<name>P15L07</name>
+			<description><![CDATA[Location: -27,02140, 21,85153<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:17:19 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85153,-27.0214,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000028">
+			<name>D15L08</name>
+			<description><![CDATA[Location: -26,95477, 21,82698<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:33:08 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82698,-26.95477,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000029">
+			<name>J13L09</name>
+			<description><![CDATA[Location: -26,97733, 21,81457<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 15:15:52 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81457,-26.97733,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200002A">
+			<name>K18L08</name>
+			<description><![CDATA[Location: -26,97454, 21,87293<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:18:04 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87293,-26.97454,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200002B">
+			<name>L17L04</name>
+			<description><![CDATA[Location: -26,98553, 21,86145<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 13:58:21 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86145,-26.98553,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200002C">
+			<name>D15L05</name>
+			<description><![CDATA[Location: -26,95526, 21,82674<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:17:31 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82674,-26.95526,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200002D">
+			<name>D15L01</name>
+			<description><![CDATA[Location: -26,95598, 21,82668<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:06:17 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82668,-26.95598,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200002E">
+			<name>K18L09</name>
+			<description><![CDATA[Location: -26,97438, 21,87292<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:13:35 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87292,-26.97438,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200002F">
+			<name>H15L09</name>
+			<description><![CDATA[Location: -26,95413, 21,82881<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 11:28:10 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82881,-26.95413,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000030">
+			<name>H15L04</name>
+			<description><![CDATA[Location: -26,95501, 21,82871<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 12:15:40 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82871,-26.95501,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000031">
+			<name>O18 L01</name>
+			<description><![CDATA[Location: -27,01138, 21,88008<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 10:00:09 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88008,-27.01138,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000032">
+			<name>Q17L06</name>
+			<description><![CDATA[Location: -27,03069, 21,87708<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:37:27 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87708,-27.03069,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000033">
+			<name>J13L10</name>
+			<description><![CDATA[Location: -26,97721, 21,81450<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 15:22:36 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8145,-26.97721,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000034">
+			<name>P15L01</name>
+			<description><![CDATA[Location: -27,02246, 21,85145<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:45:33 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85145,-27.02246,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000035">
+			<name>O18L07</name>
+			<description><![CDATA[Location: -27,01019, 21,88010<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 08:58:14 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8801,-27.01019,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000036">
+			<name>Q17L01</name>
+			<description><![CDATA[Location: -27,03152, 21,87679<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 14:10:24 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87679,-27.03152,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000037">
+			<name>J15L09</name>
+			<description><![CDATA[Location: -26,97249, 21,83567<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 16:58:11 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83567,-26.97249,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000038">
+			<name>J15L06</name>
+			<description><![CDATA[Location: -26,97303, 21,83576<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:13:02 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83576,-26.97303,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000039">
+			<name>O18L05</name>
+			<description><![CDATA[Location: -27,01059, 21,88006<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 09:19:07 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88006,-27.01059,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200003A">
+			<name>O18L06</name>
+			<description><![CDATA[Location: -27,01038, 21,88009<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 09:09:01 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88009,-27.01038,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200003B">
+			<name>H15L05</name>
+			<description><![CDATA[Location: -26,95484, 21,82871<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 12:06:58 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82871,-26.95484,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200003C">
+			<name>J13L02</name>
+			<description><![CDATA[Location: -26,97858, 21,81447<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 16:08:56 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81447,-26.97858,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200003D">
+			<name>K18L02</name>
+			<description><![CDATA[Location: -26,97562, 21,87297<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:50:42 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87297,-26.97562,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200003E">
+			<name>O18L02</name>
+			<description><![CDATA[Location: -27,01119, 21,88005<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 09:51:14 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88005,-27.01119,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200003F">
+			<name>Q17L02</name>
+			<description><![CDATA[Location: -27,03136, 21,87685<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 14:04:28 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87685,-27.03136,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000040">
+			<name>P15L04</name>
+			<description><![CDATA[Location: -27,02193, 21,85153<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:28:29 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85153,-27.02193,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000041">
+			<name>Q17L07</name>
+			<description><![CDATA[Location: -27,03052, 21,87714<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:32:36 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87714,-27.03052,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000042">
+			<name>D15L03</name>
+			<description><![CDATA[Location: -26,95561, 21,82669<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:12:35 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82669,-26.95561,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000043">
+			<name>Q17L03</name>
+			<description><![CDATA[Location: -27,03120, 21,87692<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:58:12 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87692,-27.0312,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000044">
+			<name>O18L09</name>
+			<description><![CDATA[Location: -27,00982, 21,88012<br>
+Elevation: 0,0 m<br>
+Time Created: 11/6/23, 08:41:20 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.88012,-27.00982,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000045">
+			<name>J13L06</name>
+			<description><![CDATA[Location: -26,97788, 21,81454<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 15:40:26 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81454,-26.97788,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000046">
+			<name>J15L01</name>
+			<description><![CDATA[Location: -26,97390, 21,83581<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:37:13 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83581,-26.9739,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000047">
+			<name>D15L07</name>
+			<description><![CDATA[Location: -26,95494, 21,82690<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:31:16 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.8269,-26.95494,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000048">
+			<name>K18L01</name>
+			<description><![CDATA[Location: -26,97579, 21,87299<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:55:18 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87299,-26.97579,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000049">
+			<name>L15L01</name>
+			<description><![CDATA[Location: -26,99014, 21,83814<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:45:42 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83814,-26.99014,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200004A">
+			<name>J13L01</name>
+			<description><![CDATA[Location: -26,97875, 21,81446<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 16:15:44 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81446,-26.97875,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200004B">
+			<name>K18L03</name>
+			<description><![CDATA[Location: -26,97544, 21,87297<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:45:09 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87297,-26.97544,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200004C">
+			<name>J15L02</name>
+			<description><![CDATA[Location: -26,97373, 21,83582<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:33:48 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83582,-26.97373,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200004D">
+			<name>L17L03</name>
+			<description><![CDATA[Location: -26,98571, 21,86145<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 14:02:59 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86145,-26.98571,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200004E">
+			<name>J15L04</name>
+			<description><![CDATA[Location: -26,97338, 21,83579<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:23:55 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83579,-26.97338,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200004F">
+			<name>Q17L09</name>
+			<description><![CDATA[Location: -27,03020, 21,87727<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:20:05 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87727,-27.0302,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000050">
+			<name>H15L08</name>
+			<description><![CDATA[Location: -26,95431, 21,82883<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 11:40:10 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82883,-26.95431,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000051">
+			<name>K18L06</name>
+			<description><![CDATA[Location: -26,97490, 21,87299<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 15:29:34 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87299,-26.9749,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000052">
+			<name>P15L06</name>
+			<description><![CDATA[Location: -27,02158, 21,85154<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:20:21 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85154,-27.02158,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000053">
+			<name>L15L07</name>
+			<description><![CDATA[Location: -26,98907, 21,83815<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:10:21 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83815,-26.98907,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000054">
+			<name>J15L07</name>
+			<description><![CDATA[Location: -26,97286, 21,83574<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:08:55 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83574,-26.97286,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000055">
+			<name>L15L05</name>
+			<description><![CDATA[Location: -26,98942, 21,83813<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:25:13 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83813,-26.98942,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000056">
+			<name>J15L03</name>
+			<description><![CDATA[Location: -26,97353, 21,83579<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:28:24 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83579,-26.97353,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000057">
+			<name>J13L08</name>
+			<description><![CDATA[Location: -26,97754, 21,81457<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 15:28:05 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81457,-26.97754,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000058">
+			<name>L15L02</name>
+			<description><![CDATA[Location: -26,98995, 21,83812<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:40:42 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83812,-26.98995,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000059">
+			<name>P15L09</name>
+			<description><![CDATA[Location: -27,02106, 21,85153<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:07:02 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85153,-27.02106,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200005A">
+			<name>H15L07</name>
+			<description><![CDATA[Location: -26,95449, 21,82879<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 11:47:27 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82879,-26.95449,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200005B">
+			<name>Q17L05</name>
+			<description><![CDATA[Location: -27,03085, 21,87703<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 13:44:06 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.87703,-27.03085,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200005C">
+			<name>H15L01</name>
+			<description><![CDATA[Location: -26,95553, 21,82868<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 12:33:25 CEST<br>
+Notes: H15L10
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82868,-26.95553,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200005D">
+			<name>D15L02</name>
+			<description><![CDATA[Location: -26,95579, 21,82669<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:10:12 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82669,-26.95579,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200005E">
+			<name>L17L06</name>
+			<description><![CDATA[Location: -26,98517, 21,86142<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 13:48:12 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86142,-26.98517,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE200005F">
+			<name>L17L05</name>
+			<description><![CDATA[Location: -26,98537, 21,86143<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 13:53:00 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.86143,-26.98537,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000060">
+			<name>D15L06</name>
+			<description><![CDATA[Location: -26,95507, 21,82681<br>
+Elevation: 0,0 m<br>
+Time Created: 15/6/23, 15:27:56 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.82681,-26.95507,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000061">
+			<name>J15L08</name>
+			<description><![CDATA[Location: -26,97267, 21,83572<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 17:07:04 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83572,-26.97267,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000062">
+			<name>J13L04</name>
+			<description><![CDATA[Location: -26,97823, 21,81452<br>
+Elevation: 0,0 m<br>
+Time Created: 8/6/23, 15:53:08 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.81452,-26.97823,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000063">
+			<name>P15L03</name>
+			<description><![CDATA[Location: -27,02211, 21,85151<br>
+Elevation: 0,0 m<br>
+Time Created: 10/6/23, 16:34:54 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.85151,-27.02211,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54702A8BE2000064">
+			<name>L15L06</name>
+			<description><![CDATA[Location: -26,98922, 21,83815<br>
+Elevation: 0,0 m<br>
+Time Created: 9/6/23, 12:19:12 CEST<br>
+]]></description>
+			<styleUrl>#__managed_style_2CBA69C21237927B349F</styleUrl>
+			<Point>
+				<coordinates>21.83815,-26.98922,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>
