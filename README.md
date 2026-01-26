@@ -149,7 +149,7 @@ Please note that only some datasets have currently been processed.
 
 If you use this dataset, please cite:
 
-Morales-González, A., Jubber W.R., Fuller, A., Ozgul, A., Graf, K., Da Silva, C.Y., Gómez-Peña, G., Huber, S., Manser M.B., Paniw. M. 2026. A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems. https://doi.org/10.5281/zenodo.18376602.
+Morales-González, A., Jubber, W. R., Fuller, A., Ozgul, A., Graf, K., da Silva, C. Y., Gómez-Peña, G., Huber, S., Manser, M. B., & Paniw, M. (2026). A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
 
 Manuscript in preparation. The final citation will be updated upon publication.
 
