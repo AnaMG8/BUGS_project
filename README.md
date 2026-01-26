@@ -128,7 +128,7 @@ Detailed variable descriptions are provided in the manuscript.
 
 ## Code availability
 
-This repository (https://github.com/AnaMG8/SoilProject) contains the manuscript (`manuscript_v080126.docx`) and the following folders:
+This repository (https://github.com/AnaMG8/BUGS_project) contains the manuscript (`manuscript_v080126.docx`) and the following folders:
 
 | Folder | Description |
 |--------|-------------|
