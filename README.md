@@ -21,7 +21,7 @@ The dataset is designed to support research on biodiversity patterns, ecosystem 
 
 ---
 
-# Study area
+## Study area
 
 Data were collected at the **Kalahari Research Centre (KRC)**, Northern Cape, South Africa  
 (–26.9786°, 21.8321°).
@@ -34,7 +34,7 @@ The study area is characterized by:
 
 ---
 
-# Datasets
+## Datasets
 
 | Dataset | Description |
 |---------|-------------|
@@ -52,7 +52,10 @@ The study area is characterized by:
 
 ---
 
-# Invertebrate sampling
+## Sampling overview
+
+
+#### Invertebrate sampling
 
 - **Standard pitfall traps** for surface-active invertebrates  
 - **Subterranean pitfall traps** to assess vertical stratification  
@@ -64,7 +67,7 @@ The study area is characterized by:
 
 ---
 
-# Vegetation sampling
+#### Vegetation sampling
 
 Vegetation was surveyed in 4 × 4 m plots centered on pitfall traps, recording:
 
@@ -76,7 +79,7 @@ Sampling overlapped temporally with invertebrate monitoring.
 
 ---
 
-# Soil and microclimate sampling
+#### Soil and microclimate sampling
 
 - Soil temperature and moisture measured using TMS loggers
 - Measurements every 15 minutes
@@ -85,7 +88,7 @@ Sampling overlapped temporally with invertebrate monitoring.
 
 ---
 
-# Vertebrate sampling
+#### Vertebrate sampling
 
 - Vertebrates were monitored using camera traps
 - 146 Browning BTC-7E cameras deployed in June 2023
@@ -99,7 +102,7 @@ Sampling overlapped temporally with invertebrate monitoring.
 
 ---
 
-# Data quality and validation
+## Data quality and validation
 
 All datasets are currently undergoing extensive quality control, including:
 
@@ -113,7 +116,7 @@ Details of the validation workflow are provided in the manuscript.
 
 ---
 
-# Data structure and integration
+## Data structure and integration
 
 Datasets share common identifiers such as: `timestamp`, `pitfall_id`,...
 
@@ -123,7 +126,7 @@ Detailed variable descriptions are provided in the manuscript.
 
 ---
 
-# Code availability
+## Code availability
 
 This repository (https://github.com/AnaMG8/SoilProject) contains the manuscript (`manuscript_v080126.docx`) and the following folders:
 
@@ -136,10 +139,11 @@ This repository (https://github.com/AnaMG8/SoilProject) contains the manuscript 
 | **metadata** | Metadata files describing soil loggers, pitfall traps, and associated sampling                           information |
 | **raw_datasets** | Raw data files including camera trap records, soil logger data, invertebrate                             diversity and biomass, vegetation surveys, habitat layers, and pitfall locations |
 
+Please note that only some datasets have currently been processed.
 
 ---
 
-# Citation
+## Citation
 
 If you use this dataset, please cite:
 
@@ -149,7 +153,7 @@ Morales-González, A., Jubber W.R., Fuller, A., Ozgul, A., Graf, K., Da Silva, C
 
 ---
 
-# Contact
+## Contact
 
 For questions or data requests, please contact:
 
