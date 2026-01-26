@@ -157,11 +157,11 @@ Morales-González, A., Jubber W.R., Fuller, A., Ozgul, A., Graf, K., Da Silva, C
 
 For questions or data requests, please contact:
 
-Ana Morales-González (first-author)  
+Ana Morales-González (first author)  
 Institute of Nature Conservation of the Polish Academy of Sciences (IOP PAN)
 morales@iop.krakov.pl
 
-Maria Paniw (last-author)  
+Maria Paniw (senior author)  
 Estación Biológica de Doñana-CSIC
 maria.paniw@ebd.csic.es
 
