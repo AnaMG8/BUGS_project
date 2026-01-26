@@ -1,7 +1,7 @@
 
 ## A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems
 
-This repository contains the data and code associated with the manuscript in preparation “A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems”
+This repository contains the data and code associated with the manuscript in preparation “A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems”. https://doi.org/10.5281/zenodo.18376602.
 
 Authors: Ana Morales-González, Walter R Jubber, Andrea Fuller, Arpat Ozgul, Ken Graf, Candela Yáñez da Silva, Guillermo Gómez Peña, Sonja Huber, Marta B. Manser, Maria Paniw
 
@@ -147,9 +147,9 @@ Please note that only some datasets have currently been processed.
 
 If you use this dataset, please cite:
 
-Morales-González, A., Jubber W.R., Fuller, A., Ozgul, A., Graf, K., Da Silva, C.Y., Gómez-Peña, G., Huber, S., Manser M.B., Paniw. M. A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems. in prep. 
+Morales-González, A., Jubber W.R., Fuller, A., Ozgul, A., Graf, K., Da Silva, C.Y., Gómez-Peña, G., Huber, S., Manser M.B., Paniw. M. A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems. https://doi.org/10.5281/zenodo.18376602.
 
-(The final citation will be updated upon publication)
+Manuscript in preparation. The final citation will be updated upon publication.
 
 ---
 
