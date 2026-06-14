@@ -52,10 +52,10 @@ The database comprises eleven complementary datasets.
 | v | Vertebrate species composition | 705,168 | 36 | 146 camera traps |
 | vi | Deployment dates for loggers | 21 | – | 21 loggers |
 | vii | Soil temperature and moisture | 5,286,746 | – | 21 loggers |
-| viii | Macrohabitats | Spatial layer | – | Study area |
-| ix | Pitfall trap locations | 100 | – | 100 locations |
-| x | Subterranean trap locations | 20 | – | 20 locations |
-| xi | Camera trap locations | 71 | – | 71 locations |
+| viii | Macrohabitats | ADD | – | Study area |
+| ix | Pitfall trap locations | 100 | – | Study area |
+| x | Subterranean trap locations | 20 | – | Study area |
+| xi | Camera trap locations | 71 | – | Study area |
 
 Together, these datasets provide one of the most detailed integrated records currently available for dryland biodiversity, spanning soil fauna, vegetation, vertebrates, environmental conditions, and spatial context.
 
