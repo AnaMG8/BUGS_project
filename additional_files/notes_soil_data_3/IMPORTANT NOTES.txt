@@ -1,6 +1,0 @@
--I COULD NOT FIND THE LOGGER OUT OF THE OTC IN KRR4.
--THERE WERE A LOT OF PROBLEMS READING THE LOGGERS.
--J13L01	95145250 was dug up
--THERE ARE SOME DUPLICATED FILES. This is because i got a lot of ERRORS while it was reading, so by changing the starting date i could get some files, but i cannot visualise the info properly.
-
-
