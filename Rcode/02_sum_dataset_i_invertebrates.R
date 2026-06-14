@@ -179,7 +179,19 @@ summaryF <- function(clean_div){
   # ========================================= #
   
   # Calculate total abundance and percentage of individuals identified at each taxonomic level
-  total_abundance <- sum(clean_div$number_caught, na.rm = TRUE)  # total number of individuals
+  
+  # Pitfall
+  abundance_pitfall <- clean_div %>%
+    filter(method == "pitfall") %>%
+    summarise(abundance = sum(number_caught, na.rm = TRUE)) %>%
+    pull(abundance)
+  
+  # Subterranean (double + three stratified)
+  abundance_subterranean <- clean_div %>%
+    filter(method %in% c("double-stratified subterranean",
+                         "three-stratified subterranean")) %>%
+    summarise(abundance = sum(number_caught, na.rm = TRUE)) %>%
+    pull(abundance)
   
   abundance_by_level <- clean_div %>%
     mutate(
@@ -386,7 +398,7 @@ summaryF <- function(clean_div){
     arrange(desc(n))
   plot_ab_sub_genus <- plotF(most_abundant_genus_sub, genera)
   
-  return(list(taxa_list,n_taxa,total_abundance,abundance_by_level,unique_taxa_counts,species_summary_by_type,
+  return(list(taxa_list,n_taxa,abundance_pitfall,abundance_subterranean,abundance_by_level,unique_taxa_counts,species_summary_by_type,
               most_common_species,most_abundant_species,plot_pres_sd_genus,plot_pres_sub_genus,plot_ab_sd_genus,plot_ab_sub_genus))
 }
 
@@ -397,16 +409,17 @@ summaryF <- function(clean_div){
 resSum <- summaryF(clean_div)
 taxa_list <- resSum[[1]]
 n_taxa <- resSum[[2]]
-total_abundance <- resSum[[3]]
-abundance_by_level <- resSum[[4]]
-unique_taxa_counts <- resSum[[5]]
-species_summary_by_type <- resSum[[6]]
-most_common_species <- resSum[[7]]
-most_abundant_species <- resSum[[8]]
-plot_common_sd <- resSum[[9]] 
-plot_common_sub <- resSum[[10]]
-plot_ab_sd <- resSum[[11]]
-plot_ab_sub <- resSum[[12]]
+abundance_pitfall <- resSum[[3]]
+abundance_subterranean <- resSum[[4]]
+abundance_by_level <- resSum[[5]]
+unique_taxa_counts <- resSum[[6]]
+species_summary_by_type <- resSum[[7]]
+most_common_species <- resSum[[8]]
+most_abundant_species <- resSum[[9]]
+plot_common_sd <- resSum[[10]] 
+plot_common_sub <- resSum[[11]]
+plot_ab_sd <- resSum[[12]]
+plot_ab_sub <- resSum[[13]]
 
 #################
 # INSPECT OUTPUTS (manually)
@@ -419,7 +432,8 @@ taxa_list
 n_taxa
 
 # Total abundance
-total_abundance
+abundance_pitfall
+abundance_subterranean
 
 # Percentage of individuals identified to order,family,genera and species
 (1-sum(clean_div[is.na(clean_div$order),"number_caught"])/total_abundance)*100
