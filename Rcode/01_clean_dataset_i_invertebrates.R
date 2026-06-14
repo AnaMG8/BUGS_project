@@ -2,7 +2,7 @@
 # Script name: 01_clean_dataset_i_invertebrates.R
 # Purpose: Validation and cleaning of Dataset i: Invertebrate species composition
 # Author: Morales-González et al.
-# Date: 10 December 2025
+# Date: 26 May 2026
 # Description:
 #   This script processes the raw invertebrate species composition dataset collected
 #   from standard and subterranean pitfall traps to obtain a clean dataset.
@@ -30,12 +30,12 @@ pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Docum
 
 # Define study period (accounting for standard and subterranean sampling)
 startDate <- "2023-08-02"
-endDate <- "2025-09-30"
+endDate <- "2026-01-22"
 
 ##################
 # LOAD RAW DATASET
 ##################
-div <- read_excel(paste0(pathRepo, "raw_datasets/invertebrate_diversity_AUG25.xlsx"))
+div <- read_excel(paste0(pathRepo, "raw_datasets/invertebrate_diversity_FEB26.xlsx"))
 
 # Inspect raw dataset structure and summary statistics
 skim(div)
@@ -93,19 +93,19 @@ capitalizeF <- function(taxL) {
 # Function to detect potential typographical errors within taxonomic levels using Levenshtein distance
 similar_namesF <- function(div, targetT){
     if(targetT %in% "species"){
-      taxon_all <- unique(div$prey_item_species) # get unique species
+      taxon_all <- unique(div$species) # get unique species
     }else if(targetT %in% "genera"){
-      taxon_all <- unique(div$prey_item_genera) # get unique genera
+      taxon_all <- unique(div$genera) # get unique genera
     }else if(targetT %in% "tribe"){
-      taxon_all <- unique(div$prey_item_tribe) # get unique tribe
+      taxon_all <- unique(div$tribe) # get unique tribe
     }else if(targetT %in% "subfamily"){
-      taxon_all <- unique(div$prey_item_subfamily) # get unique subfamily
+      taxon_all <- unique(div$subfamily) # get unique subfamily
     }else if(targetT %in% "family"){
-      taxon_all <- unique(div$prey_item_family) # get unique family
+      taxon_all <- unique(div$family) # get unique family
     }else if(targetT %in% "order"){
-      taxon_all <- unique(div$prey_item_order) # get unique order
+      taxon_all <- unique(div$order) # get unique order
     }else if(targetT %in% "class"){
-      taxon_all <- unique(div$prey_item_class) # get unique class
+      taxon_all <- unique(div$class) # get unique class
     }
     dist_matrix <- stringdistmatrix(taxon_all, taxon_all, method = "lv") # calculate pairwise Levenshtein distances
     threshold <- 2 # Establish a threshold for potential similar names
@@ -134,26 +134,26 @@ similar_namesF <- function(div, targetT){
         str_remove("\\s*\\(Distance:.*\\)") 
       taxon_D <- unique(c(taxon_list_1, taxon_list_2))
       if(targetT %in% "species"){
-        similar_taxon <- unique(div[div$prey_item_species %in% taxon_D, c("prey_item_genera", "prey_item_species")])
-        similar_taxon <- similar_taxon[order(similar_taxon$prey_item_species, similar_taxon$prey_item_genera), ]
+        similar_taxon <- unique(div[div$species %in% taxon_D, c("genera", "species")])
+        similar_taxon <- similar_taxon[order(similar_taxon$species, similar_taxon$genera), ]
       }else if(targetT %in% "genera"){
-        similar_taxon <- unique(div[div$prey_item_genera %in% taxon_D, c("prey_item_genera", "prey_item_species")])
-        similar_taxon <- similar_taxon[order(similar_taxon$prey_item_genera, similar_taxon$prey_item_species), ]
+        similar_taxon <- unique(div[div$genera %in% taxon_D, c("genera", "species")])
+        similar_taxon <- similar_taxon[order(similar_taxon$genera, similar_taxon$species), ]
       }else if(targetT %in% "tribe"){
-        similar_taxon <- unique(div[div$prey_item_tribe %in% taxon_D, c("prey_item_tribe", "prey_item_genera")])
-        similar_taxon <- similar_taxon[order(similar_taxon$prey_item_tribe), ]
+        similar_taxon <- unique(div[div$tribe %in% taxon_D, c("tribe", "genera")])
+        similar_taxon <- similar_taxon[order(similar_taxon$tribe), ]
       }else if(targetT %in% "subfamily"){
-        similar_taxon <- unique(div[div$prey_item_subfamily %in% taxon_D, c("prey_item_subfamily","prey_item_tribe")])
-        similar_taxon <- similar_taxon[order(similar_taxon$prey_item_subfamily), ]
+        similar_taxon <- unique(div[div$subfamily %in% taxon_D, c("subfamily","tribe")])
+        similar_taxon <- similar_taxon[order(similar_taxon$subfamily), ]
       }else if(targetT %in% "family"){
-        similar_taxon <- unique(div[div$prey_item_family %in% taxon_D, c("prey_item_family","prey_item_subfamily")])
-        similar_taxon <- similar_taxon[order(similar_taxon$prey_item_family), ]
+        similar_taxon <- unique(div[div$family %in% taxon_D, c("family","subfamily")])
+        similar_taxon <- similar_taxon[order(similar_taxon$family), ]
       }else if(targetT %in% "order"){
-        similar_taxon <- unique(div[div$prey_item_order %in% taxon_D, c("prey_item_order","prey_item_family")])
-        similar_taxon <- similar_taxon[order(similar_taxon$prey_item_order), ]
+        similar_taxon <- unique(div[div$order %in% taxon_D, c("order","family")])
+        similar_taxon <- similar_taxon[order(similar_taxon$order), ]
       }else if(targetT %in% "class"){
-        similar_taxon <- unique(div[div$prey_item_class %in% taxon_D, c("prey_item_class","prey_item_order")])
-        similar_taxon <- similar_taxon[order(similar_taxon$prey_item_class), ]
+        similar_taxon <- unique(div[div$class %in% taxon_D, c("class","order")])
+        similar_taxon <- similar_taxon[order(similar_taxon$class), ]
       }
     }else{
       similar_taxon <- NULL
@@ -169,7 +169,7 @@ invalid_refsF <- function(div){
   # Build patterns
   site_pattern <- paste0("(", paste(valid_sites, collapse = "|"), ")")
   # standard pitfalls: SITE L01..L10
-  pattern_standard <- paste0("^", site_pattern, "L(0[1-9]|10)$")
+  pattern_standard <- paste0("^", site_pattern, "L(0[1-9]|10)D?$")
   # double-stratified subterranean pitfalls: S SITE L01 L01|L02  (first L01 indicates double, second indicates the stratum)
   pattern_double <- paste0("^S", site_pattern, "L01L(0[1-2])$")
   # three-stratified subterranean pitfalls: S SITE L05 L01|L02|L03  (first L05 indicates three, second indicates the stratum)
@@ -178,9 +178,9 @@ invalid_refsF <- function(div){
   # Check each row against the patterns
   div_checked <- div %>%
     mutate(
-      is_standard = str_detect(ref_2, pattern_standard),
-      is_double   = str_detect(ref_2, pattern_double),
-      is_three    = str_detect(ref_2, pattern_three),
+      is_standard = str_detect(trap_id, pattern_standard),
+      is_double   = str_detect(trap_id, pattern_double),
+      is_three    = str_detect(trap_id, pattern_three),
       is_valid    = is_standard | is_double | is_three
     )
   
@@ -188,9 +188,9 @@ invalid_refsF <- function(div){
   invalid_refs <- div_checked %>%
     filter(!is_valid) %>%
     # keep original columns plus the helper columns for debugging
-    dplyr::select(ref, ref_2, everything(), is_standard, is_double, is_three, is_valid)
+    dplyr::select(trap_id, everything(), is_standard, is_double, is_three, is_valid)
   
-  invalid_refs <-unique(invalid_refs$ref_2)
+  invalid_refs <-unique(invalid_refs$trap_id)
   
   return(invalid_refs)
 }
@@ -213,9 +213,9 @@ invalid_methF <- function(div){
   div_checked <- div %>%
     mutate(
       trap_type_ref = case_when(
-        str_detect(ref_2, pattern_standard) ~ "pitfall",
-        str_detect(ref_2, pattern_double)   ~ "double-stratified subterranean",
-        str_detect(ref_2, pattern_three)    ~ "three-stratified subterranean",
+        str_detect(trap_id, pattern_standard) ~ "pitfall",
+        str_detect(trap_id, pattern_double)   ~ "double-stratified subterranean",
+        str_detect(trap_id, pattern_three)    ~ "three-stratified subterranean",
         TRUE ~ NA_character_
       ),
       # Flag records where the stated method does not match the inferred method
@@ -227,7 +227,7 @@ invalid_methF <- function(div){
     filter(method_mismatch)
   
   # Return unique combinations of pitfall ID and method
-  invalid_method <- unique(invalid_method[,c("ref_2","method"),])
+  invalid_method <- unique(invalid_method[,c("trap_id","method"),])
   
   return(invalid_method)
 }
@@ -235,19 +235,43 @@ invalid_methF <- function(div){
 # Main validation function
 validationF <- function(div){
   
-  # =============================== #
-  # 1. Standardize column names     #
-  # =============================== #
+  # ============================================================== #
+  # 1. Standardize column names and remove unnecessary columns     #
+  # ============================================================== #
   
   # Convert column names to snake_case and lowercase
   div <- div %>% 
     janitor::clean_names()
   
-  # Replace "tribe" by "prey_item_tribe" to match the other taxonomic columns
-  names(div)[names(div) == "tribe"] <- "prey_item_tribe"
+  # Replace "prey_item_group" by "class"
+  names(div)[names(div) == "prey_item_group"] <- "class"
   
-  # Replace "prey_item_group" by "prey_item_class" to match the other taxonomic columns
-  names(div)[names(div) == "prey_item_group"] <- "prey_item_class"
+  # Replace "prey_item_order" by "order"
+  names(div)[names(div) == "prey_item_order"] <- "order"
+  
+  # Replace "prey_item_family" by "family"
+  names(div)[names(div) == "prey_item_family"] <- "family"
+  
+  # Replace "prey_item_subfamily" by "subfamily"
+  names(div)[names(div) == "prey_item_subfamily"] <- "subfamily"
+  
+  # Replace "prey_item_genera" by "genera"
+  names(div)[names(div) == "prey_item_genera"] <- "genera"
+  
+  # Replace "prey_item_species" by "species"
+  names(div)[names(div) == "prey_item_species"] <- "species"
+  
+  # Replace "ref_2" by "trap_id"
+  names(div)[names(div) == "ref_2"] <- "trap_id"
+  
+  # Remove ref. This ID indicates the collection reference of the specimen(s). 
+  # If several specimens are clearly the same species and were collected at the same sampling occasion, 
+  # pitfall, and stratum (if subterranean), they are recorded as a single entry and share the same ID. 
+  # Otherwise, they receive a unique ID and entry. This ID allows experts to later assist with identifications.
+  # The reference consists of NC (Northern Cape), VZR (Van Zylsrus), and a four-digit number.
+  # We removed this variable as it is only important for the author´s internal libraries.
+  div <- div %>% select(-ref)
+  
   
   # =============================== #
   # 2. Format and validate types    #
@@ -286,17 +310,18 @@ validationF <- function(div){
   
   # Remove rows missing critical info
   div <- div %>%
-    tidyr::drop_na(prey_item_class, prey_item_order,timestamp, ref_2, number_caught)
+    tidyr::drop_na(class, order,timestamp, trap_id, number_caught)
   
-  # Fill missing 'method' based on 'ref_2'
+  # Fill missing 'method' based on 'trap_id'
   div <- div %>%
     mutate(
       method = ifelse(
         is.na(method),
         case_when(
-          nchar(ref_2) == 6 ~ "pitfall",
-          substr(ref_2, 7, 7) == "1" ~ "double-stratified subterranean",
-          substr(ref_2, 7, 7) == "5" ~ "three-stratified subterranean",
+          nchar(trap_id) == 6 ~ "pitfall",
+          substr(trap_id, 7, 7) == "D" ~ "pitfall",
+          substr(trap_id, 7, 7) == "1" ~ "double-stratified subterranean",
+          substr(trap_id, 7, 7) == "5" ~ "three-stratified subterranean",
           TRUE ~ NA_character_
         ),
         method
@@ -309,15 +334,15 @@ validationF <- function(div){
   
   # Standardize taxonomic names (species in lowercase; the first letter of higher-level taxa capitalized)
   div <- div %>%
-    mutate(prey_item_species = tolower(prey_item_species))
+    mutate(species = tolower(species))
   div <- div %>%
-    mutate(across(all_of(c("prey_item_class","prey_item_order","prey_item_family",
-                           "prey_item_subfamily","prey_item_tribe","prey_item_genera")), ~ sapply(., capitalizeF)))
+    mutate(across(all_of(c("class","order","family",
+                           "subfamily","tribe","genera")), ~ sapply(., capitalizeF)))
   
   # Handle species labeled as sp.X (replace with NA)
-  species_all <- unique(div$prey_item_species)
+  species_all <- unique(div$species)
   sp_to_unid <- species_all[grepl("^sp\\.?\\s*\\d+$", species_all, ignore.case = TRUE)]
-  div$prey_item_species[div$prey_item_species %in% sp_to_unid] <- NA
+  div$species[div$species %in% sp_to_unid] <- NA
   rm(sp_to_unid,species_all)
   
   # Detect similar names within taxonomic levels (to inspect manually)
@@ -328,6 +353,27 @@ validationF <- function(div){
   similar_fam <- similar_namesF(div,"family")
   similar_order <- similar_namesF(div,"order")
   similar_class <- similar_namesF(div,"class")
+  
+  # Identify species epithets shared across multiple genera (ignoring "cf." prefixes),
+  # and return a cleaned table with family, genus, species, and a flag indicating
+  # uncertain species identification (cf.)
+  duplicated_species_df <- div %>%
+    filter(!is.na(species), !is.na(genera)) %>%
+    mutate(
+      cf_sp  = str_detect(species, "^cf\\.?\\s*"),
+      species_clean = str_remove(species, "^cf\\.?\\s*")
+    ) %>%
+    group_by(species_clean) %>%
+    filter(n_distinct(genera) > 1) %>%
+    ungroup() %>%
+    transmute(
+      family,
+      genera  = genera,
+      species = species_clean,
+      cf_sp
+    ) %>%
+    distinct() %>%
+    arrange(species, genera)
   
   # =============================== #
   # 5. Detect outliers and errors   #
@@ -341,14 +387,14 @@ validationF <- function(div){
   # Remove rows where the date is outside the study period
   div <- div %>%
     filter(timestamp >= as.POSIXct(paste0(startDate)) &
-             timestamp <= as.POSIXct(paste0(endDate)))
+             timestamp <= as.POSIXct(paste0(endDate, " 23:59:59")))
   
   # =============================== #
   # 6. Validate pitfall IDs         #
   # =============================== #
   
   # Ensure pitfall IDs are uppercase
-  div$ref_2 <- toupper(div$ref_2)
+  div$trap_id <- toupper(div$trap_id)
   
   # Detect potential invalid pitfall IDs (to inspect manually)
   invalid_refs <- invalid_refsF(div)
@@ -386,19 +432,9 @@ validationF <- function(div){
     filter(n() > 1) %>%             
     ungroup()     
   
-  # =============================== #
-  # 10. Repeated refs               #
-  # =============================== #
-  
-  # Detect 'ref' codes that appear more than once
-  repeated_refs <- div %>%
-    group_by(ref) %>%
-    summarise(count = n(), .groups = "drop") %>%
-    filter(count > 1)
-  
   
   return(list(div,similar_class,similar_order,similar_fam,similar_subfam,similar_tribe,similar_gen,similar_sp,
-              outlier_abundances,invalid_refs,invalid_method,duplicates,repeated_refs))
+              duplicated_species_df,outlier_abundances,invalid_refs,invalid_method,duplicates))
 }
 
 ####################################
@@ -413,11 +449,11 @@ similar_subfam <- resVal[[5]]
 similar_tribe <- resVal[[6]]
 similar_gen <- resVal[[7]]
 similar_sp <- resVal[[8]]
-outlier_abundances <- resVal[[9]]
-invalid_refs <- resVal[[10]]
-invalid_method <- resVal[[11]]
-duplicates <- resVal[[12]]
-repeated_refs <- resVal[[13]]
+duplicated_species_df <- resVal[[9]]
+outlier_abundances <- resVal[[10]]
+invalid_refs <- resVal[[11]]
+invalid_method <- resVal[[12]]
+duplicates <- resVal[[13]]
 rm(resVal)
 
 #################
@@ -427,57 +463,43 @@ rm(resVal)
 # TAXONOMIC NAMES
 similar_class # no similar class names found
 similar_order # no similar order names found
-similar_fam # 1 typo found
-div_clean$prey_item_family[div_clean$prey_item_family %in% "Myrmeleonitdae"] <- "Myrmeleontidae" # replace Myrmeleonitdae by Myrmeleontidae
+similar_fam # all correct
 similar_subfam # all correct
-similar_tribe # 1 typo found
-div_clean$prey_item_tribe[div_clean$prey_item_tribe %in% "Anthini"] <- "Anthiini" # replace Anthini by Anthiini
-similar_gen # 1 typo found
-div_clean$prey_item_genera[div_clean$prey_item_genera %in% "Megaponea"] <- "Megaponera" # replace Megaponea by Megaponera
-similar_sp # 2 typo found
-div_clean$prey_item_species[div_clean$prey_item_species %in% "andersoni" & div_clean$prey_item_genera %in% "Metacatharsius"] <- "anderseni" # replace Metacatharsius andersoni by Metacatharsius anderseni
-div_clean$prey_item_species[div_clean$prey_item_species %in% "coccineus" & div_clean$prey_item_genera %in% "Opistophthalmus"] <- "concinnus" # replace Opistophthalmus coccineus by Opistophthalmus concinnus
+similar_tribe # no similar tribe names found
+similar_gen # all correct
+similar_sp # 1 typo found
+div_clean$species[div_clean$species %in% "andersoni" & div_clean$genera %in% "Metacatharsius"] <- "anderseni" # replace Metacatharsius andersoni by Metacatharsius anderseni
+duplicated_species_df # 5 typos found
+# Metacatharsius andersoni by Metacatharsius anderseni (done above)
+div_clean$species[div_clean$species %in% "bimaculatus" & div_clean$genera %in% "Rhaphidosoma"] <- NA # Rhaphidosoma	bimaculatus by Rhaphidosoma	NA
+div_clean$species[div_clean$species %in% "coccineus" & div_clean$genera %in% "Strangulotilla"] <- NA # Strangulotilla	coccineus by Strangulotilla	NA
+div_clean$species[div_clean$species %in% "concinnus" & div_clean$genera %in% "Ammoxenus"] <- "coccineus" # Ammoxenus	concinnus by Ammoxenus coccineus
+div_clean$species[div_clean$species %in% "morsitans" & div_clean$genera %in% "Zeria"] <- "monteiri" # Zeria	morsitans by Zeria	monteiri
 
 # OUTLIERS
 outlier_abundances # realistic abundances because they are ants and termites
 
 # PITFALL IDs
-invalid_refs # 9 typos found
-div_clean$ref_2[div_clean$ref_2 %in% "K18LO6"] <- "K18L06" # replace O by 0
-div_clean$ref_2[div_clean$ref_2 %in% "SK15L01L01"] <- NA # unknown site, cannot fix zzz
-div_clean$ref_2[div_clean$ref_2 %in% "SP15S05L03"] <- "SP15L05L03" # replace S by L zzz
-div_clean$ref_2[div_clean$ref_2 %in% "SITE03"] <- NA # unknown site, cannot fix zzz
-div_clean$ref_2[div_clean$ref_2 %in% "SITE05"] <- NA # unknown site, cannot fix zzz
-div_clean$ref_2[div_clean$ref_2 %in% "S018L05L01"] <- "SO18L05L01" # replace O by 0 zzz
-div_clean$ref_2[div_clean$ref_2 %in% "J51L10"] <- NA # unknown site, cannot fix
-div_clean$ref_2[div_clean$ref_2 %in% "K18K10"] <- "K18L10" # replace K by L zzz
-div_clean$ref_2[div_clean$ref_2 %in% "K18K08"] <- "K18L08" # replace K by L
-div_clean <- div_clean[!is.na(div_clean$ref_2),] # remove rows where ref_2 is NA
+invalid_refs # 4 typos found
+div_clean$trap_id[div_clean$trap_id %in% "SITE03"] <- NA # unknown site, cannot fix
+div_clean$trap_id[div_clean$trap_id %in% "SITE05"] <- NA # unknown site, cannot fix
+div_clean$trap_id[div_clean$trap_id %in% "K18LO6"] <- "K18L06" # replace O by 0
+div_clean$trap_id[div_clean$trap_id %in% "Q18L04"] <- "Q17L04" # replace 8 by 7
+div_clean <- div_clean[!is.na(div_clean$trap_id),] # remove rows where trap_id is NA
 
 # STATED METHODS
-invalid_method # 2 typos found
-div_clean$method[div_clean$ref_2 == c("SH15L05L01")] <- "three-stratified subterranean"  # replace double-stratified by three-stratified
-div_clean$method[div_clean$ref_2 == c("SH15L01L02")] <- "double-stratified subterranean"  # replace three-stratified by double-stratified
+invalid_method # 3 typos found
+div_clean$method[div_clean$trap_id == c("SH15L01L02")] <- "double-stratified subterranean"  # replace three-stratified by double-stratified
+div_clean$method[div_clean$trap_id == c("SJ15L01L01")] <- "double-stratified subterranean"  # replace pitfall by double-stratified
+div_clean$method[div_clean$trap_id == c("SH15L05L01")] <- "three-stratified subterranean"  # replace double-stratified by three-stratified
 
 # STATED LIFE STAGES
 unique(div_clean$life_stage)
-life_stage_list <- split(div_clean, div_clean$life_stage) # Create a list where each element corresponds to one life stage
-write_xlsx(life_stage_list, paste0(pathRepo,"checks/div_clean_by_life_stage.xlsx")) # Export the dataset to an Excel file for detailed inspection
-# Some typos found during inspection and need correction
-# NOTE: to do
+div_clean$life_stage[div_clean$life_stage %in% c("juv")] <- "juvenile" # rename "juv" to "juvenile"
 
 # DUPLICATES
-duplicates # no duplicates found
+duplicates # no duplicates found (although identical values, they correspond to different individuals)
 
-# REPEATED REFs
-repeated_refs # Several refs are repeated
-repeated_list <- lapply(repeated_refs$ref, function(x) { # Create a list where each element corresponds to one repeated reference
-  div_clean %>% filter(ref == x)
-})
-names(repeated_list) <- repeated_refs$ref # Assign the names of the repeated refs to the list elements
-write_xlsx(repeated_list, paste0(pathRepo, "checks/repeated_list.xlsx")) # Export the dataset to an Excel file for detailed inspection
-# Some typos were found during inspection and need correction
-# NOTE: to do
 
 ######################
 # EXPORT CLEAN DATASET

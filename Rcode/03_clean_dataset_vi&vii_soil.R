@@ -1,9 +1,9 @@
 ###############################################################################
 # Script name: 03_clean_dataset_vi&vii_soil.R
-# Purpose: Validation and cleaning of Dataset vi (Deployment date for loggers) 
+# Purpose: Validation and cleaning of Dataset vi (Deployment dates for loggers) 
 # and Dataset vii (Soil temperature and moisture)
 # Author: Morales-González et al.
-# Date: 18 December 2025
+# Date: 26 May 2026
 # Description:
 #   This script processes the raw soil temperature and moisture dataset collected
 #   from TMS-4 and buriable TMS loggers to obtain a clean dataset.
@@ -40,13 +40,33 @@ outliers_myClim <- TRUE
 ###################
 
 # Load soil data
-soil <- mc_read_files(
-  path = paste0(pathRepo,"raw_datasets/soil_data"),
+
+# Data from "2024-02-08 18:30:00 UTC" to "2025-09-11 10:45:00 UTC"
+soil_1 <- mc_read_files(
+  path = paste0(pathRepo,"raw_datasets/soil_data_1"),
   dataformat_name = "TOMST",              # TOMST logger format
   recursive = FALSE,                      # No subfolder search
   silent = TRUE                           # Suppress messages
 )
-mc_info_meta(soil)
+mc_info_meta(soil_1)$locality_id
+
+# Data downloaded from "2025-01-01 00:00:00 UTC" to "2025-12-17 15:30:00 UTC"
+soil_2 <- mc_read_files(
+  path = paste0(pathRepo,"raw_datasets/soil_data_2"),
+  dataformat_name = "TOMST",          
+  recursive = FALSE,                 
+  silent = TRUE                           
+)
+mc_info_meta(soil_2)$locality_id
+
+# Data downloaded from "2024-02-09 11:15:00 UTC" to "2026-03-07 15:45:00 UTC"
+soil_3 <- mc_read_files(
+  path = paste0(pathRepo,"raw_datasets/soil_data_3"),
+  dataformat_name = "TOMST",          
+  recursive = FALSE,                 
+  silent = TRUE                           
+)
+mc_info_meta(soil_3)$locality_id
 
 # By default, the soil dataset includes the following variables:
 # - locality_id: serial ID of the logger (duplicated by serial_number)
@@ -91,17 +111,14 @@ validationF <- function(soil,deployment){
                                 sec = seconds,
                                 tz = "UTC")
     ) %>%
-    select(serial_number, timestamp, logger_type, pitfall_id)
-  
+    select(serial_number, timestamp, logger_type, pitfall_id) 
   
   # ====================================== #
   # 2. Remove duplicates in soil dataset   #
   # ====================================== #
   
-  # This is usually unnecessary because cleaning is done automatically when reading.
-  soil <- suppressWarnings(mc_prep_clean(soil, silent = TRUE))
+  soil <- suppressWarnings(mc_prep_clean(soil, silent = TRUE)) # if a logger cannot be cleaned (it is corrupted), remove it from the folder and start the script from the begging
 
-  
   # ========================================== #
   # 3. Keep only loggers of interest           #
   # ========================================== #
@@ -177,11 +194,15 @@ validationF <- function(soil,deployment){
     jump_tag = "jump"         # tag assigned to jump-based outliers
   )
   
-  # Summarize how many observations were flagged as each type of anomaly.
+  # To summarize how many observations were flagged as each type of anomaly use
+  # mc_info_states(soil) %>%count(tag)
   # This helps quantify data quality and assess whether thresholds need adjustment.
-  state_summary <- mc_info_states(soil) %>%
-    count(tag)
-  
+  # Detected outliers are grouped into:
+  #   - 'jump': sudden step changes between consecutive records
+  #   - 'range': measurements outside predefined valid ranges
+  #   - 'source': anomalies related to sensor source or metadata inconsistencies
+  # While effective at identifying anomalies, this method may not
+  # detect sustained shifts in sensor values, which we address using GAMs below.
   
   # Replace outliers with NA.
   # This step removes the flagged observations from further analyses
@@ -195,9 +216,7 @@ validationF <- function(soil,deployment){
       crop_margins_NA = FALSE      # do not crop margins
     )
   
-  }else{
-    state_summary <- NULL
- } 
+  }
   
   # ================================================================ #
   # 6. Convert raw moisture data to volumetric water content (VWC)   #
@@ -232,6 +251,9 @@ validationF <- function(soil,deployment){
   
   # Reshape dataset to long format
   soil <- mc_reshape_long(soil)
+  
+  # Remove potential duplicates
+  soil <- soil[!duplicated(soil), ]
   
   soil <- soil %>%
     # Filter out rows corresponding to soil electrical conductivity data
@@ -273,8 +295,7 @@ validationF <- function(soil,deployment){
     select(-logger_type)
   
   
-  
-  return(list(soil,deployment,state_summary))
+  return(list(soil,deployment))
   
 }
 
@@ -282,26 +303,121 @@ validationF <- function(soil,deployment){
 ####################################
 # RUN VALIDATION AND EXTRACT OUTPUTS
 ####################################
-resVal <- validationF(soil,deployment)
-soil_clean <- resVal[[1]]
-deployment_clean <- resVal[[2]]
-outliers_myClim <- resVal[[3]]
-rm(resVal)
+
+# Run the code for soil_1
+resVal_1 <- validationF(soil_1,deployment)
+soil_clean_1 <- resVal_1[[1]]
+deployment_clean <- resVal_1[[2]]
+rm(resVal_1)
+
+# Run the code for soil_2 (we do not extract deployment_clean because it is the same)
+resVal_2 <- validationF(soil_2,deployment)
+soil_clean_2 <- resVal_2[[1]]
+rm(resVal_2)
+
+resVal_3 <- validationF(soil_3,deployment)
+soil_clean_3 <- resVal_3[[1]]
+rm(resVal_3)
 
 #################
 # INSPECT OUTPUTS (manually)
 #################
 
-outliers_myClim
-# Summary of outliers detected and removed using the mc_states_outlier and the mc_states_replace
-# functions of the package myClim.
-# Detected outliers are grouped into:
-#   - 'jump': sudden step changes between consecutive records
-#   - 'range': measurements outside predefined valid ranges
-#   - 'source': anomalies related to sensor source or metadata inconsistencies
-# While effective at identifying anomalies, this method may not
-# detect sustained shifts in sensor values, which are addressed using GAMs below.
+# Combine data from soil_clean_1 and soil_clean_2
+# From soil_clean_1 we remove data that are already present in soil_clean_2,
+# except for serial_number 95145223 and 95139715, for which we keep all data because these
+# are not included in soil_clean_2 (the loggers broke).
+# Then we merge both datasets.
+soil_clean_1 <- soil_clean_1 %>%
+  filter(
+    timestamp < as.POSIXct("2025-01-01 00:00:00", tz = "UTC") | 
+      serial_number == "95145223" |
+      serial_number == "95139715"
+  )
+soil_clean_1$timestamp <- as.POSIXct(soil_clean_1$timestamp, tz = "UTC")
+soil_clean_2$timestamp <- as.POSIXct(soil_clean_2$timestamp, tz = "UTC")
+soil_clean <- rbind(soil_clean_1, soil_clean_2) %>%
+  dplyr::arrange(timestamp)
 
+# Process soil_clean_3 prior to merging with soil_clean.
+# First, we identify potential temporal inconsistencies (gaps > 1 day)
+# and visually inspect affected serial_numbers to manually define
+# the date from which suspicious records should be removed.
+# We then remove overlapping records already present in soil_clean
+# based on the last timestamp available for each serial_number.
+# Finally, the cleaned soil_clean_3 dataset is merged with soil_clean.
+
+# Identify unique sampling dates per serial_number
+soil_clean_3_chk <- soil_clean_3 %>%
+  mutate(date = as.Date(timestamp)) %>%
+  distinct(serial_number, date) %>%
+  arrange(serial_number, date)
+
+# Detect temporal gaps (>1 day)
+soil_clean_3_chk <- soil_clean_3_chk %>%
+  group_by(serial_number) %>%
+  arrange(date, .by_group = TRUE) %>%
+  mutate(
+    skipped_day = case_when(
+      row_number() == 1 ~ FALSE,
+      as.numeric(date - lag(date)) > 1 ~ TRUE,
+      TRUE ~ FALSE
+    )
+  ) %>%
+  ungroup()
+
+# Identify serial_numbers with flagged temporal gaps
+unique(soil_clean_3_chk$serial_number[soil_clean_3_chk$skipped_day == TRUE])
+
+# Check the dates for each serial_number and manually define removal dates
+check_serial_1 <- soil_clean_3_chk %>%
+  filter(serial_number == "95145250") # remove from 2026-03-07 onwards, inclusive
+check_serial_2 <- soil_clean_3_chk %>%
+  filter(serial_number == "95145254") # remove from 2026-03-08 onwards, inclusive
+check_serial_3 <- soil_clean_3_chk %>%
+  filter(serial_number == "95145255") # remove from 2080-01-01 onwards, inclusive
+
+remove_dates <- tibble::tibble(
+  serial_number = c("95145250", "95145254", "95145255"),
+  remove_from = as.Date(c("2026-03-07", "2026-03-08", "2080-01-01"))
+)
+
+# Remove records from the selected problematic date onwards
+soil_clean_3 <- soil_clean_3 %>%
+  mutate(date = as.Date(timestamp)) %>%
+  left_join(remove_dates, by = "serial_number") %>%
+  filter(is.na(remove_from) | date < remove_from) %>%
+  select(-date, -remove_from)
+
+# Check timestamp ranges
+timestamp_range <- soil_clean_3 %>%
+  group_by(serial_number) %>%
+  summarise(
+    timestamp_start = min(timestamp, na.rm = TRUE),
+    timestamp_end = max(timestamp, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Identify the last timestamp available in soil_clean
+last_timestamp <- soil_clean %>%
+  group_by(serial_number) %>%
+  summarise(
+    last_timestamp = max(timestamp, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Remove overlapping records already present in soil_clean
+soil_clean_3 <- soil_clean_3 %>%
+  left_join(last_timestamp, by = "serial_number") %>%
+  filter(is.na(last_timestamp) | timestamp > last_timestamp) %>%
+  select(-last_timestamp)
+
+# Merge datasets
+soil_clean <- bind_rows(soil_clean, soil_clean_3)
+
+# Remove temporary objects
+rm(soil_clean_3_chk, remove_dates, check_serial_1, check_serial_2, 
+   check_serial_3, timestamp_range, last_timestamp)
 
 # Temporarily add pitfall_id for steps below
 soil_clean <- soil_clean %>%
@@ -430,7 +546,7 @@ print(outlier_summary)
 # 4. Create folder for time series plots
 
 
-output_dir <- file.path(pathRepo, "checks/sensors_datasetvii")
+output_dir <- file.path(pathRepo, "checks/sensors_dataset_vii")
 if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
 
 
@@ -472,6 +588,7 @@ walk(pitfall_ids, function(s) {
     ) +
     facet_grid(sensor_name ~ height, scales = "free_y") +
     scale_color_manual(values = c("day" = "orange", "night" = "blue")) +
+    scale_x_datetime(date_labels = "%Y-%m") + 
     labs(
       title = paste("Sensor measurements over time -", s),
       x = "timestamp",
@@ -513,9 +630,28 @@ soil_clean <- soil_clean[soil_clean$outlier_gam %in% "FALSE",]
 # suitable for further analysis.
 
 colnames(soil_clean)
+
 # 7. Keep only variables of interest
 soil_clean <- soil_clean %>%
-  select(serial_number,timestamp,sensor_name,height,value) 
+  select(
+    timestamp,
+    serial_number,
+    sensor_name,
+    height,
+    value
+  )
+
+# 8. Reorder and rename columns in deployment dataset
+deployment_clean <- deployment_clean %>%
+  rename(
+    trap_id = pitfall_id
+  ) %>%
+  select(
+    timestamp,
+    trap_id,
+    serial_number,
+    logger_type
+  )
 
 
 ######################
@@ -529,6 +665,3 @@ write.csv(deployment_clean,paste0(pathRepo, "clean_datasets/Dataset_vi_clean.csv
 gz_con <- gzfile(paste0(pathRepo, "clean_datasets/Dataset_vii_clean.csv.gz"),"w")
 write.csv(soil_clean,gz_con,row.names = FALSE)
 close(gz_con)
-
-
-
