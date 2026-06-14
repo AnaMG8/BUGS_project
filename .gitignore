@@ -7,11 +7,8 @@
 # Ignore R history files
 .Rhistory
 
-# Ignore large raw datasets
-additional_files/camera_traps/TT_output_imagerow_DF.csv
-
-# Ignore folders that are not relevant to the project
-notes/
+# Ignore temporary project files not required for reproducibility
+working_files/
 
 
 
