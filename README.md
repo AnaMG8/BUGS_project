@@ -1,169 +1,193 @@
+# A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands
 
-## A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems
+## Overview
 
-This repository contains the data and code associated with the manuscript in preparation “A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems”.
+This repository contains the complete data infrastructure associated with the Kalahari multitrophic biodiversity and environmental database, a coordinated monitoring programme established at the Kalahari Research Centre (Northern Cape, South Africa) to quantify biodiversity and environmental dynamics across multiple trophic levels in a dryland ecosystem.
 
-Authors: Ana Morales-González, Walter R Jubber, Andrea Fuller, Arpat Ozgul, Ken Graf, Candela Yáñez da Silva, Guillermo Gómez Peña, Sonja Huber, Marta B. Manser, Maria Paniw
+The repository provides raw data, curated datasets, metadata, and reproducible R workflows used to generate the data products described in the accompanying Data Descriptor:
 
-DOI: https://doi.org/10.5281/zenodo.18376602.
+**Morales-González, A., Jubber, W.R., Fuller, A., Ozgul, A., Graf, K., Yáñez da Silva, C., Gómez Peña, G., Huber, S., Manser, M.B. & Paniw, M.**
+*A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands.*
 
-The dataset compiles coordinated, long-term field observations of biodiversity and environmental conditions collected in the southern Kalahari (South Africa) from August 2023.
+The database integrates information on:
 
-It integrates information on:
-- Invertebrate communities
-- Vegetation composition
-- Vertebrate communities
-- Soil temperature and moisture
-- Habitat structure and spatial variables
+* Above-ground invertebrate communities
+* Below-ground invertebrate communities
+* Invertebrate biomass
+* Vegetation composition and structure
+* Vertebrate communities
+* Soil temperature
+* Soil moisture
+* Macrohabitat classification
+* Spatial metadata
 
-The dataset is designed to support research on biodiversity patterns, ecosystem functioning, and ecological responses to global change in dryland systems.
+All datasets were collected within a common sampling framework and can be linked through shared identifiers, enabling integrated analyses across trophic levels, environmental conditions, and spatial scales.
 
+---
+
+## Study system
+
+Data were collected at the Kalahari Research Centre (KRC), Northern Cape, South Africa (26.9786° S, 21.8321° E).
+
+The monitoring programme spans a heterogeneous dryland landscape composed of:
+
+* Natural (rewilded) areas
+* Rotational grazing areas
+* Mixed-species grazing areas
+
+Sampling began in June–August 2023 and continues as part of an ongoing long-term monitoring programme.
+
+---
+
+## Database summary
+
+The database currently comprises eleven complementary datasets.
+
+| Dataset | Description                               |  Observations | Taxa | Sampling units |
+| ------- | ----------------------------------------- | ------------: | ---: | -------------: |
+| i       | Invertebrate species composition          |         9,258 |  372 |      120 traps |
+| ii      | Invertebrate biomass (pitfall traps)      |        15,708 |    – |      100 traps |
+| iii     | Invertebrate biomass (subterranean traps) |           605 |    – |       20 traps |
+| iv      | Vegetation species composition            |           992 |   34 |      100 plots |
+| v       | Vertebrate species composition            |       705,168 |   36 |    146 cameras |
+| vi      | Logger deployment metadata                |            21 |    – |     21 loggers |
+| vii     | Soil temperature and moisture             |     5,286,746 |    – |     21 loggers |
+| viii    | Macrohabitats                             | Spatial layer |    – |     Study area |
+| ix      | Pitfall trap locations                    |           100 |    – |  100 locations |
+| x       | Subterranean trap locations               |            20 |    – |   20 locations |
+| xi      | Camera trap locations                     |            71 |    – |   71 locations |
+
+Together, these datasets provide one of the most detailed integrated records currently available for dryland biodiversity, spanning soil fauna, vegetation, vertebrates, environmental conditions, and spatial context.
+
+---
+
+## Dataset integration
+
+The database was designed as a relational data resource.
+
+Datasets can be linked using shared identifiers, including:
+
+| Variable      | Datasets              |
+| ------------- | --------------------- |
+| timestamp     | i, ii, iii, vi, vii   |
+| trap_id       | i, ii, iii, iv, ix, x |
+| serial_number | vi, vii               |
+| camera_id     | v, xi                 |
+
+These identifiers allow users to integrate biological observations with environmental measurements and spatial metadata.
+
+Examples include:
+
+* Linking invertebrate communities to soil temperature and moisture.
+* Relating vegetation structure to invertebrate abundance and biomass.
+* Evaluating vertebrate responses to environmental conditions.
+* Comparing biodiversity across land-use types and macrohabitats.
+
+---
 
 ## Repository structure
 
----
+```text
+BUGS_project
+│
+├── Rcode/
+│   Reproducible data-cleaning and processing workflows.
+│
+├── raw_datasets/
+│   Original source files collected in the field.
+│
+├── clean_datasets/
+│   Curated datasets distributed with the publication.
+│
+├── metadata/
+│   Supporting metadata and data dictionaries.
+│
+├── README.md
+│
+└── .gitignore
+```
 
-## Study area
-
-Data were collected at the **Kalahari Research Centre (KRC)**, Northern Cape, South Africa  
-(–26.9786°, 21.8321°).
-
-The study area is characterized by:
-- Semi-arid climate with strong seasonal variation
-- Mean annual rainfall ~266 mm
-- Sandy, nutrient-poor soils
-- A mosaic of land-use types (rewilded, holistic grazing, high-impact grazing)
-
----
-
-## Datasets
-
-| Dataset | Description |
-|---------|-------------|
-| **Dataset i** | Invertebrate species composition |
-| **Dataset ii** | Invertebrate biomass – standard pitfall traps |
-| **Dataset iii** | Invertebrate biomass – subterranean pitfall traps |
-| **Dataset iv** | Vegetation composition |
-| **Dataset v** | Vertebrate detections (camera traps) |
-| **Dataset vi** | Logger deployment metadata |
-| **Dataset vii** | Soil temperature and moisture time series |
-| **Dataset viii** | Habitat classification |
-| **Dataset ix** | Standard pitfall locations |
-| **Dataset x** | Subterranean pitfall locations |
-| **Dataset xi** | Camera trap locations |
+Additional working directories may be present during project development but are not required to reproduce the published datasets.
 
 ---
 
-## Sampling overview
+## Reproducible workflows
 
+All datasets were processed using scripted workflows implemented in R.
 
-#### Invertebrate sampling
+For each dataset, the repository contains:
 
-- **Standard pitfall traps** for surface-active invertebrates  
-- **Subterranean pitfall traps** to assess vertical stratification  
-- Sampling period:
-  - Standard pitfalls: from August 2023
-  - Subterranean pitfalls: from February 2024 
-- Individuals identified to the lowest possible taxonomic level
-- Dry trapping method used to minimize mortality and preserve DNA integrity
+1. Raw source data.
+2. Cleaning and validation scripts.
+3. Curated datasets.
+4. Summary scripts used to generate descriptive statistics and figures.
 
----
+The processing workflow follows a transparent and reproducible structure from raw observations to final data products.
 
-#### Vegetation sampling
+Scripts are extensively annotated to document:
 
-Vegetation was surveyed in 4 × 4 m plots centered on pitfall traps, recording:
-
-- Percent cover of bare soil, grasses, shrubs, and trees
-- Vegetation height
-- Species presence
-
-Sampling overlapped temporally with invertebrate monitoring.
+* Data validation procedures
+* Quality-control decisions
+* Taxonomic standardisation
+* Formatting corrections
+* Dataset-specific processing steps
 
 ---
 
-#### Soil and microclimate sampling
+## Data quality assurance
 
-- Soil temperature and moisture measured using TMS loggers
-- Measurements every 15 minutes
-- Multiple depths and heights per site
-- Data available from February 2024
+Quality-control procedures were implemented throughout data collection and processing.
 
----
+These procedures included:
 
-#### Vertebrate sampling
+* Validation of sampling identifiers.
+* Verification of timestamps and sampling periods.
+* Taxonomic standardisation.
+* Detection of duplicated records.
+* Consistency checks among linked datasets.
+* Inspection of anomalous environmental measurements.
+* Manual review of uncertain records.
 
-- Vertebrates were monitored using camera traps
-- 146 Browning BTC-7E cameras deployed in June 2023
-- Cameras arranged in 73 locations spaced approximately 1 km apart
-- Two cameras per station, facing north and south
-- Cameras mounted at ~40 cm above ground
-- No bait or lure used
-- Cameras recorded five images per trigger (0.3 s interval)
-- Stations checked monthly for maintenance
-- Data include species identity, date, time, and location
+Detailed validation procedures are described in the accompanying Data Descriptor.
 
 ---
 
-## Data quality and validation
+## Data access
 
-All datasets are currently undergoing extensive quality control, including:
+The curated datasets distributed through this repository represent the version associated with the published Data Descriptor.
 
-- Taxonomic validation by specialists
-- Standardization of variable names and formats
-- Consistent timestamps (ISO 8601)
-- Verification of pitfall IDs and sampling periods
-- Outlier checks and correction of inconsistencies
-
-Details of the validation workflow are provided in the manuscript.
-
----
-
-## Data structure and integration
-
-Datasets share common identifiers such as: `timestamp`, `pitfall_id`,...
-
-These allow datasets to be linked across biological, environmental, and spatial dimensions.
-
-Detailed variable descriptions are provided in the manuscript.
-
----
-
-## Code availability
-
-This repository (https://github.com/AnaMG8/BUGS_project) contains the manuscript (`manuscript_v080126.docx`) and the following folders:
-
-| Folder | Description |
-|--------|-------------|
-| **Rcode** | R scripts used to validate, clean, and prepare the raw datasets. Each script corresponds to               a specific dataset |
-| **checks** | Files and figures generated during data validation and quality control. These outputs are                used for visual inspection of the data (e.g. taxonomic consistency, outliers, formatting                 issues) that cannot be fully addressed through automated procedures |
-| **clean_datasets** | Final datasets ready for analysis, produced after validation and cleaning of the                         raw data |
-| **figures** | Figures generated during data exploration and preparation, some may be included in                       the manuscript |
-| **metadata** | Metadata files describing soil loggers, pitfall traps, and associated sampling                           information |
-| **raw_datasets** | Raw data files including camera trap records, soil logger data, invertebrate                             diversity and biomass, vegetation surveys, habitat layers, and pitfall locations |
-
-Please note that only some datasets have currently been processed.
+Future updates may extend the temporal coverage of the monitoring programme while preserving versioned releases of previously published datasets.
 
 ---
 
 ## Citation
 
-If you use this dataset, please cite:
+If you use these data, please cite both:
 
-Morales-González, A., Jubber, W. R., Fuller, A., Ozgul, A., Graf, K., da Silva, C. Y., Gómez-Peña, G., Huber, S., Manser, M. B., & Paniw, M. (2026). A comprehensive multi-trophic biodiversity and environmental dataset for understanding global change impacts in dryland ecosystems (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
+1. The Data Descriptor publication.
+2. The archived dataset release.
 
-Manuscript in preparation. The final citation will be updated upon publication.
+Dataset DOI:
+
+[INSERT DOI]
+
+Data Descriptor:
+
+[INSERT FINAL CITATION AFTER ACCEPTANCE]
 
 ---
 
 ## Contact
 
-For questions or data requests, please contact:
+**Ana Morales-González**
 
-Ana Morales-González (first author)  
-Institute of Nature Conservation of the Polish Academy of Sciences (IOP PAN)
-morales@iop.krakov.pl
+Institute of Nature Conservation,
+Polish Academy of Sciences (IOP PAN)
 
-Maria Paniw (senior author)  
-Estación Biológica de Doñana-CSIC
-maria.paniw@ebd.csic.es
+Kraków, Poland
 
+**Maria Paniw**
+
+Estación Biológica de Doñana (EBD-CSIC)
+
+Seville, Spain
