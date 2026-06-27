@@ -52,7 +52,7 @@ The database comprises eleven complementary datasets.
 | v | Vertebrate species composition | 705,168 | 36 | 146 camera traps |
 | vi | Deployment dates for loggers | 21 | – | 21 loggers |
 | vii | Soil temperature and moisture | 5,286,746 | – | 21 loggers |
-| viii | Macrohabitats | ADD | – | Study area |
+| viii | Macrohabitat polygons | 12,270 | – | Study area |
 | ix | Pitfall trap locations | 100 | – | Study area |
 | x | Subterranean trap locations | 20 | – | Study area |
 | xi | Camera trap locations | 71 | – | Study area |
@@ -65,16 +65,18 @@ Together, these datasets provide one of the most detailed integrated records cur
 
 The database was designed as a relational data resource.
 
-Datasets can be linked using shared identifiers, including:
+Datasets can be integrated through a set of shared or linking variables, including identifiers, temporal variables, spatial coordinates, and geometry, depending on the dataset.
 
-| Variable      | Datasets              |
-| ------------- | --------------------- |
-| timestamp     | i, ii, iii, vi, vii   |
-| trap_id       | i, ii, iii, iv, ix, x |
-| serial_number | vi, vii               |
-| camera_id     | v, xi                 |
+| Linking variable     | Datasets                   |
+|-----------------------|----------------------------|
+| timestamp             | i, ii, iii, vi, vii        |
+| year, month           | iv                         |
+| trap_id               | i, ii, iii, iv, vi, ix, x  |
+| serial_number         | vi, vii                    |
+| latitude, longitude   | ix, x, xi                  |
+| geometry              | viii                       |
 
-These identifiers allow users to integrate biodiversity, environmental, and spatial information within a common analytical framework.
+These variables allow users to integrate biodiversity, environmental, and spatial information within a common analytical framework.
 
 Examples of potential applications include:
 
