@@ -193,6 +193,8 @@ summaryF <- function(clean_div){
     summarise(abundance = sum(number_caught, na.rm = TRUE)) %>%
     pull(abundance)
   
+  total_abundance <- sum(clean_div$number_caught, na.rm = TRUE)
+  
   abundance_by_level <- clean_div %>%
     mutate(
       tax_level = case_when(
