@@ -223,16 +223,41 @@ summaryF <- function(clean_div){
   
   # Calculate the total number of unique taxa at each taxonomic level
   unique_taxa_counts <- clean_div %>%
-    summarise(
-      n_species = n_distinct(paste(genera, species)
-                             [!is.na(species) & !is.na(genera)]), # unique species
-      n_genus   = n_distinct(genera[!is.na(genera)]),     # unique genera
-      n_tribe   = n_distinct(tribe[!is.na(tribe)]),       # unique tribes
-      n_subfamily = n_distinct(subfamily[!is.na(subfamily)]), # unique subfamilies
-      n_family  = n_distinct(family[!is.na(family)]),      # unique families
-      n_order   = n_distinct(order[!is.na(order)]),       # unique orders
-      n_class   = n_distinct(class[!is.na(class)])        # unique classes
-    )
+    mutate(
+      method_group = case_when(
+        method == "pitfall" ~ "pitfall",
+        method %in% c("double-stratified subterranean",
+                      "three-stratified subterranean") ~ "subterranean",
+        TRUE ~ "other"
+      )
+    ) %>%
+    {
+      bind_rows(
+        group_by(., method_group) %>%
+          summarise(
+            n_species = n_distinct(paste(genera, species)[!is.na(species) & !is.na(genera)]),
+            n_genus = n_distinct(genera[!is.na(genera)]),
+            n_tribe = n_distinct(tribe[!is.na(tribe)]),
+            n_subfamily = n_distinct(subfamily[!is.na(subfamily)]),
+            n_family = n_distinct(family[!is.na(family)]),
+            n_order = n_distinct(order[!is.na(order)]),
+            n_class = n_distinct(class[!is.na(class)]),
+            .groups = "drop"
+          ),
+        summarise(
+          .,
+          method_group = "total",
+          n_species = n_distinct(paste(genera, species)[!is.na(species) & !is.na(genera)]),
+          n_genus = n_distinct(genera[!is.na(genera)]),
+          n_tribe = n_distinct(tribe[!is.na(tribe)]),
+          n_subfamily = n_distinct(subfamily[!is.na(subfamily)]),
+          n_family = n_distinct(family[!is.na(family)]),
+          n_order = n_distinct(order[!is.na(order)]),
+          n_class = n_distinct(class[!is.na(class)])
+        )
+      )
+    }
+  
   
   
   # ============================================= #

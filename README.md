@@ -6,7 +6,7 @@ This repository contains the data and reproducible workflows associated with the
 
 The repository provides raw data, curated datasets, and reproducible R workflows used to generate the data products described in the accompanying Data Descriptor:
 
-**Morales-González, A., Jubber, W.R., Fuller, A., Ozgul, A., Graf, K., Yáñez da Silva, C., Gómez Peña, G., Huber, S., Manser, M.B. & Paniw, M.**
+**Morales-González, A., Jubber, W.R., Fuller, A., Gómez Peña, G., Graf, K., Huber, S., Manser, M.B., Ozgul, A., Yáñez da Silva, C.  & Paniw, M.**
 *A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands.*
 
 The database integrates information on:
@@ -19,6 +19,7 @@ The database integrates information on:
 * Soil temperature
 * Soil moisture
 * Macrohabitat classification
+* Land-use types
 * Spatial metadata
 
 All datasets were collected within a common sampling framework and can be linked through shared identifiers, enabling integrated analyses across trophic levels, environmental conditions, and spatial scales.
@@ -41,7 +42,7 @@ Sampling began in June 2023 and data included in the current release span 2023�
 
 ## Database summary
 
-The database comprises eleven complementary datasets.
+The database comprises twelve complementary datasets.
 
 | Dataset | Description | Observations | Taxa | Sampling units |
 |----------|----------|----------:|----------:|----------:|
@@ -49,13 +50,14 @@ The database comprises eleven complementary datasets.
 | ii | Invertebrate biomass for pitfall traps | 15,708 | – | 100 pitfall traps |
 | iii | Invertebrate biomass for subterranean traps | 605 | – | 20 subterranean traps |
 | iv | Vegetation species composition | 992 | 34 | 100 pitfall traps |
-| v | Vertebrate species composition | 705,168 | 36 | 146 camera traps |
+| v | Vertebrate species composition | 441,683 | 39 | 71 camera trap stations |
 | vi | Deployment dates for loggers | 21 | – | 21 loggers |
 | vii | Soil temperature and moisture | 5,286,746 | – | 21 loggers |
 | viii | Macrohabitat polygons | 12,270 | – | Study area |
 | ix | Pitfall trap locations | 100 | – | Study area |
 | x | Subterranean trap locations | 20 | – | Study area |
 | xi | Camera trap locations | 71 | – | Study area |
+| xii | Land-use polygons | 10 | – | Study area |
 
 Together, these datasets provide one of the most detailed integrated records currently available for dryland biodiversity, spanning soil fauna, vegetation, vertebrates, environmental conditions, and spatial context.
 
@@ -74,7 +76,7 @@ Datasets can be integrated through a set of shared or linking variables, includi
 | trap_id               | i, ii, iii, iv, vi, ix, x  |
 | serial_number         | vi, vii                    |
 | latitude, longitude   | ix, x, xi                  |
-| geometry              | viii                       |
+| geometry              | viii, xii                  |
 
 These variables allow users to integrate biodiversity, environmental, and spatial information within a common analytical framework.
 
@@ -120,9 +122,7 @@ Depending on the dataset, the repository may include:
 - Curated datasets.
 - Summary scripts used to generate descriptive statistics and figures.
 
-Some datasets did not require data processing and are therefore provided directly as final curated datasets.
-
-The processing workflow follows a transparent and reproducible structure from raw observations to final data products whenever data processing was required.
+The processing workflow follows a transparent and reproducible structure from raw observations to final data products when applicable.
 
 Scripts are extensively annotated to document:
 
@@ -148,7 +148,7 @@ Users should cite both the archived dataset and the associated Data Descriptor w
 
 ### Dataset
 
-Morales-González, A., Jubber, W. R., Fuller, A., Ozgul, A., Graf, K., da Silva, C. Y., Gómez-Peña, G., Huber, S., Manser, M. B., & Paniw, M. (2026). *A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
+Morales-González, A., Jubber, W. R., Fuller, A., Gómez-Peña, G., Graf, K., Huber, S., Manser, M. B., Ozgul, A., Yáñez da Silva, C. Y., & Paniw, M. (2026). *A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
 
 ### Data Descriptor
 
@@ -165,6 +165,7 @@ Polish Academy of Sciences (IOP PAN)
 Kraków, Poland
 
 morales@iop.krakov.pl
+moralesglezana@gmail.com
 
 **Maria Paniw**
 
