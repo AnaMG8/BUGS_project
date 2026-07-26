@@ -120,7 +120,16 @@ plotF <- function(df, label_col = taxon){
       label = as.character(!!label_col),
       label = str_replace_all(label, "_", " "),
       label = str_to_sentence(label),
-      label = str_replace(label, " ", "<br>")
+      label = str_replace(label, " ([^ ]+)$", "<br>\\1"),
+      label = paste0("<b><i>", label, "</i></b>"),
+      label = str_replace_all(label, "\\(", "</i>(<i>"),
+      label = str_replace_all(label, "\\)", "</i>)<i>"),
+      label = paste0(
+        label,
+        "<br><span style='font-size:11px; color:gray;'>(",
+        format(n, big.mark = ",", scientific = FALSE, trim = TRUE),
+        ")</span>"
+      )
     )
   
   plot_ly(
@@ -138,11 +147,15 @@ plotF <- function(df, label_col = taxon){
         radialaxis = list(
           range = c(0, max(df$n) * 1.1),
           gridcolor = "grey80",
-          tickfont = list(size = 15, color = "grey20")
+          tickfont = list(size = 16, color = "black", family = "Arial Black"),
+          showline = TRUE,
+          linecolor = "black",
+          linewidth = 2
         ),
         angularaxis = list(
           direction = "clockwise",
-          tickfont = list(size = 15)
+          tickangle = "auto",
+          automargin = TRUE
         ),
         domain = list(x = c(0.15, 0.85), y = c(0.15, 0.85))
       ),
@@ -176,7 +189,7 @@ summaryF <- function(clean_vert){
   # 2. Define groups
   ############################
   
-  game_species <- c(
+  ung_species <- c(
     "Oryx gazella",
     "Connochaetes taurinus taurinus",
     "Tragelaphus oryx",
@@ -187,7 +200,8 @@ summaryF <- function(clean_vert){
     "Raphicerus campestris",
     "Sylvicapra grimmia",
     "Hippotragus equinus",
-    "Kobus leche"
+    "Kobus leche",
+    "Phacochoerus africanus"
   )
   
   domestic_mammals <- c(
@@ -206,10 +220,10 @@ summaryF <- function(clean_vert){
     "vehicle/human/livestock"
   )
   
-  non_game_wild_mammals <- vert_long %>%
+  non_ung_wild_mammals <- vert_long %>%
     distinct(taxon) %>%
     filter(
-      !taxon %in% game_species,
+      !taxon %in% ung_species,
       !taxon %in% domestic_mammals,
       !taxon %in% other_categories
     ) %>%
@@ -262,8 +276,8 @@ summaryF <- function(clean_vert){
   ############################
   
   n_species_categories <- tibble(
-    n_game_species = length(game_species),
-    n_non_game_wild_mammals = length(non_game_wild_mammals),
+    n_ung_species = length(ung_species),
+    n_non_ung_wild_mammals = length(non_ung_wild_mammals),
     n_domestic_mammal_categories = length(domestic_mammals)
   )
   
@@ -301,8 +315,8 @@ summaryF <- function(clean_vert){
     ) %>%
     mutate(
       group = case_when(
-        taxon %in% game_species ~ "game",
-        taxon %in% non_game_wild_mammals ~ "non_game",
+        taxon %in% ung_species ~ "ung",
+        taxon %in% non_ung_wild_mammals ~ "non_ung",
         taxon %in% domestic_mammals ~ "domestic",
         taxon %in% c("rodent", "bat", "bird", "reptile") ~ "broad_category",
         TRUE ~ "excluded"
@@ -313,23 +327,23 @@ summaryF <- function(clean_vert){
   # 8. Frequency and occurrence summaries
   ############################
   
-  game_frequency <- taxon_summary %>%
-    filter(group == "game") %>%
+  ung_frequency <- taxon_summary %>%
+    filter(group == "ung") %>%
     arrange(desc(n_images)) %>%
     transmute(taxon, n = n_images, perc_images)
   
-  game_occurrence <- taxon_summary %>%
-    filter(group == "game") %>%
+  ung_occurrence <- taxon_summary %>%
+    filter(group == "ung") %>%
     arrange(desc(n_sampling_stations), desc(n_images)) %>%
     transmute(taxon, n = n_sampling_stations)
   
-  non_game_frequency <- taxon_summary %>%
-    filter(group == "non_game") %>%
+  non_ung_frequency <- taxon_summary %>%
+    filter(group == "non_ung") %>%
     arrange(desc(n_images)) %>%
     transmute(taxon, n = n_images, perc_images)
   
-  non_game_occurrence <- taxon_summary %>%
-    filter(group == "non_game") %>%
+  non_ung_occurrence <- taxon_summary %>%
+    filter(group == "non_ung") %>%
     arrange(desc(n_sampling_stations), desc(n_images)) %>%
     transmute(taxon, n = n_sampling_stations)
   
@@ -351,22 +365,22 @@ summaryF <- function(clean_vert){
   # 9. Plots
   ############################
   
-  plot_game_frequency <- game_frequency %>%
+  plot_ung_frequency <- ung_frequency %>%
     slice_max(n, n = 20) %>%
     arrange(desc(n)) %>%
     plotF(taxon)
   
-  plot_game_occurrence <- game_occurrence %>%
+  plot_ung_occurrence <- ung_occurrence %>%
     slice_max(n, n = 20) %>%
     arrange(desc(n)) %>%
     plotF(taxon)
   
-  plot_non_game_frequency <- non_game_frequency %>%
+  plot_non_ung_frequency <- non_ung_frequency %>%
     slice_max(n, n = 20) %>%
     arrange(desc(n)) %>%
     plotF(taxon)
   
-  plot_non_game_occurrence <- non_game_occurrence %>%
+  plot_non_ung_occurrence <- non_ung_occurrence %>%
     slice_max(n, n = 20) %>%
     arrange(desc(n)) %>%
     plotF(taxon)
@@ -378,17 +392,17 @@ summaryF <- function(clean_vert){
     n_species_categories,
     species_categories_per_station_summary,
     taxon_summary,
-    game_frequency,
-    game_occurrence,
-    non_game_frequency,
-    non_game_occurrence,
+    ung_frequency,
+    ung_occurrence,
+    non_ung_frequency,
+    non_ung_occurrence,
     domestic_frequency,
     domestic_occurrence,
     broad_category_summary,
-    plot_game_frequency,
-    plot_game_occurrence,
-    plot_non_game_frequency,
-    plot_non_game_occurrence
+    plot_ung_frequency,
+    plot_ung_occurrence,
+    plot_non_ung_frequency,
+    plot_non_ung_occurrence
   ))
 }
 
@@ -405,18 +419,18 @@ n_species_categories <- resSum[[4]]
 species_categories_per_station_summary <- resSum[[5]]
 taxon_summary <- resSum[[6]]
 
-game_frequency <- resSum[[7]]
-game_occurrence <- resSum[[8]]
-non_game_frequency <- resSum[[9]]
-non_game_occurrence <- resSum[[10]]
+ung_frequency <- resSum[[7]]
+ung_occurrence <- resSum[[8]]
+non_ung_frequency <- resSum[[9]]
+non_ung_occurrence <- resSum[[10]]
 domestic_frequency <- resSum[[11]]
 domestic_occurrence <- resSum[[12]]
 broad_category_summary <- resSum[[13]]
 
-plot_game_frequency <- resSum[[14]]
-plot_game_occurrence <- resSum[[15]]
-plot_non_game_frequency <- resSum[[16]]
-plot_non_game_occurrence <- resSum[[17]]
+plot_ung_frequency <- resSum[[14]]
+plot_ung_occurrence <- resSum[[15]]
+plot_non_ung_frequency <- resSum[[16]]
+plot_non_ung_occurrence <- resSum[[17]]
 
 #################
 # INSPECT OUTPUTS
@@ -429,11 +443,11 @@ n_species_categories
 species_categories_per_station_summary
 taxon_summary
 
-game_frequency
-game_occurrence
+ung_frequency
+ung_occurrence
 
-non_game_frequency
-non_game_occurrence
+non_ung_frequency
+non_ung_occurrence
 
 domestic_frequency
 domestic_occurrence
@@ -450,9 +464,9 @@ if (!dir.exists(fig_path)) {
 }
 setwd(fig_path)
 
-plot_game_occurrence
-plot_non_game_occurrence
-plot_game_frequency
-plot_non_game_frequency
+plot_ung_occurrence
+plot_non_ung_occurrence
+plot_ung_frequency
+plot_non_ung_frequency
 # Export plots at 820 x 818 px for later assembly in a graphics editing environment.
 

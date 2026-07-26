@@ -2,7 +2,7 @@
 # Script name: 01_clean_dataset_i_invertebrates.R
 # Purpose: Validation and cleaning of Dataset i: Invertebrate species composition
 # Author: Morales-González et al.
-# Date: 26 May 2026
+# Date: 26 July 2026
 # Description:
 #   This script processes the raw invertebrate species composition dataset collected
 #   from standard and subterranean pitfall traps to obtain a clean dataset.
@@ -30,12 +30,12 @@ pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Docum
 
 # Define study period (accounting for standard and subterranean sampling)
 startDate <- "2023-08-02"
-endDate <- "2026-01-22"
+endDate <- "2026-04-22"
 
 ##################
 # LOAD RAW DATASET
 ##################
-div <- read_excel(paste0(pathRepo, "raw_datasets/invertebrate_diversity_FEB26.xlsx"))
+div <- read_excel(paste0(pathRepo, "raw_datasets/invertebrate_diversity_JUN26.xlsx"))
 
 # Inspect raw dataset structure and summary statistics
 skim(div)
@@ -341,12 +341,20 @@ validationF <- function(div){
   
   # Handle species labeled as sp.X (replace with NA)
   species_all <- unique(div$species)
-  sp_to_unid <- species_all[grepl("^sp\\.?\\s*\\d+$", species_all, ignore.case = TRUE)]
-  div$species[div$species %in% sp_to_unid] <- NA
+  sp_to_unid <- species_all[grepl("^sp\\.+\\s*\\d+$", species_all, ignore.case = TRUE)]
+  div$species <- gsub("^sp\\.*\\s*(\\d+)$","sp. \\1",div$species,ignore.case = TRUE)
   rm(sp_to_unid,species_all)
+
+  
+  # Handle species labeled as nsp. (replace with new sp.)
+  div$species <- gsub("\\bnsp\\.", "new sp.", div$species)
+  
+  # Standardize a descriptive note as "cf. new sp."
+  div$species[div$species%in% "sp. [possibly new or undescribed msle nr. mirabilis]"] <- "cf. new sp."
   
   # Detect similar names within taxonomic levels (to inspect manually)
   similar_sp <- similar_namesF(div,"species")
+  similar_sp <- similar_sp %>%filter(!grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE),species != "new sp.",species != "cf. new sp.")
   similar_gen <- similar_namesF(div,"genera")
   similar_tribe <- similar_namesF(div,"tribe")
   similar_subfam <- similar_namesF(div,"subfamily")
@@ -358,7 +366,9 @@ validationF <- function(div){
   # and return a cleaned table with family, genus, species, and a flag indicating
   # uncertain species identification (cf.)
   duplicated_species_df <- div %>%
-    filter(!is.na(species), !is.na(genera)) %>%
+    filter(!is.na(species), !is.na(genera), 
+           !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE),
+           species != "new sp.", species != "cf. new sp.") %>%
     mutate(
       cf_sp  = str_detect(species, "^cf\\.?\\s*"),
       species_clean = str_remove(species, "^cf\\.?\\s*")
@@ -463,35 +473,35 @@ rm(resVal)
 # TAXONOMIC NAMES
 similar_class # no similar class names found
 similar_order # no similar order names found
-similar_fam # all correct
-similar_subfam # all correct
-similar_tribe # no similar tribe names found
-similar_gen # all correct
-similar_sp # 1 typo found
-div_clean$species[div_clean$species %in% "andersoni" & div_clean$genera %in% "Metacatharsius"] <- "anderseni" # replace Metacatharsius andersoni by Metacatharsius anderseni
-duplicated_species_df # 5 typos found
-# Metacatharsius andersoni by Metacatharsius anderseni (done above)
-div_clean$species[div_clean$species %in% "bimaculatus" & div_clean$genera %in% "Rhaphidosoma"] <- NA # Rhaphidosoma	bimaculatus by Rhaphidosoma	NA
-div_clean$species[div_clean$species %in% "coccineus" & div_clean$genera %in% "Strangulotilla"] <- NA # Strangulotilla	coccineus by Strangulotilla	NA
-div_clean$species[div_clean$species %in% "concinnus" & div_clean$genera %in% "Ammoxenus"] <- "coccineus" # Ammoxenus	concinnus by Ammoxenus coccineus
-div_clean$species[div_clean$species %in% "morsitans" & div_clean$genera %in% "Zeria"] <- "monteiri" # Zeria	morsitans by Zeria	monteiri
+similar_fam # 1 typo
+div_clean$family[div_clean$family %in% "Trombididae"] <- "Trombidiidae"
+similar_subfam # 1 typo
+div_clean$subfamily[div_clean$subfamily%in%"Blaptinae" & div_clean$tribe%in%"Scaurini"] <- "Tenebrioninae"
+similar_tribe # 2 typo
+div_clean$tribe[div_clean$tribe%in%"Anthini" & div_clean$genera%in%"Cypholoba"] <- "Anthiini"
+div_clean$tribe[div_clean$tribe%in%"Anthini" & div_clean$genera%in%"Anthia"] <- "Anthiini"
+similar_gen # 1 typo
+div_clean$genera[div_clean$genera%in%"Evippoma"] <- "Evippomma"
+similar_sp # all correct
+duplicated_species_df # all correct
 
 # OUTLIERS
 outlier_abundances # realistic abundances because they are ants and termites
 
 # PITFALL IDs
-invalid_refs # 4 typos found
+invalid_refs # 7 typos found
 div_clean$trap_id[div_clean$trap_id %in% "SITE03"] <- NA # unknown site, cannot fix
 div_clean$trap_id[div_clean$trap_id %in% "SITE05"] <- NA # unknown site, cannot fix
 div_clean$trap_id[div_clean$trap_id %in% "K18LO6"] <- "K18L06" # replace O by 0
 div_clean$trap_id[div_clean$trap_id %in% "Q18L04"] <- "Q17L04" # replace 8 by 7
+div_clean$trap_id[div_clean$trap_id %in% "DUNG SITE"] <- NA # unknown site, cannot fix
+div_clean$trap_id[div_clean$trap_id %in% "SITE07"] <- NA # unknown site, cannot fix
+div_clean$trap_id[div_clean$trap_id %in% "SJ15L03L03"] <- "SJ15L05L03" # replace L03 by L05
 div_clean <- div_clean[!is.na(div_clean$trap_id),] # remove rows where trap_id is NA
 
 # STATED METHODS
-invalid_method # 3 typos found
+invalid_method # 1 typos found
 div_clean$method[div_clean$trap_id == c("SH15L01L02")] <- "double-stratified subterranean"  # replace three-stratified by double-stratified
-div_clean$method[div_clean$trap_id == c("SJ15L01L01")] <- "double-stratified subterranean"  # replace pitfall by double-stratified
-div_clean$method[div_clean$trap_id == c("SH15L05L01")] <- "three-stratified subterranean"  # replace double-stratified by three-stratified
 
 # STATED LIFE STAGES
 unique(div_clean$life_stage)

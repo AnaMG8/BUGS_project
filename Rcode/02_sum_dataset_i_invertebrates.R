@@ -2,7 +2,7 @@
 # Script name: 02_sum_dataset_i_invertebrates.R
 # Purpose: Summary metrics of Dataset i: Invertebrate species composition
 # Author: Morales-González et al.
-# Date: 26 May 2026
+# Date: 26 July 2026
 # Description:
 #   This script calculates the summary metrics provided in "Data Records"
 #   for the clean Dataset i.
@@ -56,6 +56,15 @@ plotF <- function(df, label_col = genus_species){
         str_detect(label, "\\([^)]*\\)\\s+[A-Za-z]+$") ~
           str_replace(label, "(\\))\\s+([A-Za-z]+)$", "\\1<br>\\2"),
         TRUE ~ label
+      ),
+      label = paste0("<b><i>", label, "</i></b>"),
+      label = str_replace_all(label, "\\(", "</i>(<i>"),
+      label = str_replace_all(label, "\\)", "</i>)<i>"),
+      label = paste0(
+        label,
+        "<br><span style='font-size:11px; color:gray;'>(",
+        format(n, big.mark = ",", scientific = FALSE, trim = TRUE),
+        ")</span>"
       )
     )
   
@@ -72,13 +81,17 @@ plotF <- function(df, label_col = genus_species){
     layout(
       polar = list(
         radialaxis = list(
-          range = c(0, max(df$n) * 1.1),
-          gridcolor = "grey80",
-          tickfont = list(size = 15,color="grey20")
-        ),
+          range = c(0, max(df$n) * 1.1), 
+          gridcolor = "grey80", 
+          tickfont = list(size = 16,color="black",family = "Arial Black"),
+          showline = TRUE,
+          linecolor = "black",
+          linewidth = 2
+          ),
         angularaxis = list(
           direction = "clockwise",
-          tickfont = list(size = 15)
+          tickangle = "auto",
+          automargin = TRUE
         ),
         domain = list(x = c(0.15, 0.85), y = c(0.15, 0.85))
       ),
@@ -99,7 +112,8 @@ summaryF <- function(clean_div){
   unique_div <- clean_div %>%
     mutate(
       lowest_taxon = case_when(
-        !is.na(species) & !is.na(genera) ~ 
+        !is.na(species) & !species %in% c("new sp.", "cf. new sp.") & !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE) 
+        & !is.na(genera) ~ 
           paste(genera, species),        # use species if available
         !is.na(genera) ~ genera,         # otherwise use genus
         !is.na(tribe) ~ tribe,           # otherwise use tribe
@@ -158,7 +172,8 @@ summaryF <- function(clean_div){
   clean_div <- clean_div %>%
     mutate(
       lowest_taxon = case_when(
-        !is.na(species) & !is.na(genera) ~ 
+        !is.na(species) & !species %in% c("new sp.", "cf. new sp.") & !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE) 
+        & !is.na(genera) ~ 
           paste(genera, species),        # use species if available
         !is.na(genera) ~ genera,         # otherwise use genus
         !is.na(tribe) ~ tribe,           # otherwise use tribe
@@ -198,7 +213,9 @@ summaryF <- function(clean_div){
   abundance_by_level <- clean_div %>%
     mutate(
       tax_level = case_when(
-        !is.na(species) ~ "Species",       # use species if available
+        !is.na(species) & 
+          !species %in% c("new sp.", "cf. new sp.") & 
+          !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE) ~ "Species", # use species if available
         !is.na(genera) ~ "Genus",         # otherwise use genus
         !is.na(tribe) ~ "Tribe",          # otherwise tribe
         !is.na(subfamily) ~ "Subfamily",  # otherwise subfamily
@@ -235,7 +252,10 @@ summaryF <- function(clean_div){
       bind_rows(
         group_by(., method_group) %>%
           summarise(
-            n_species = n_distinct(paste(genera, species)[!is.na(species) & !is.na(genera)]),
+            n_species = n_distinct(paste(genera, species)[
+              !is.na(species) & !is.na(genera) &
+                !species %in% c("new sp.", "cf. new sp.") &
+                !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE)]),
             n_genus = n_distinct(genera[!is.na(genera)]),
             n_tribe = n_distinct(tribe[!is.na(tribe)]),
             n_subfamily = n_distinct(subfamily[!is.na(subfamily)]),
@@ -247,7 +267,10 @@ summaryF <- function(clean_div){
         summarise(
           .,
           method_group = "total",
-          n_species = n_distinct(paste(genera, species)[!is.na(species) & !is.na(genera)]),
+          n_species = n_distinct(paste(genera, species)[
+            !is.na(species) & !is.na(genera) &
+              !species %in% c("new sp.", "cf. new sp.") &
+              !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE)]),
           n_genus = n_distinct(genera[!is.na(genera)]),
           n_tribe = n_distinct(tribe[!is.na(tribe)]),
           n_subfamily = n_distinct(subfamily[!is.na(subfamily)]),
@@ -282,9 +305,17 @@ summaryF <- function(clean_div){
   
   # Calculate the number of species per pitfall
   species_per_pitfall <- clean_div %>%
-    filter(!is.na(species)) %>%            # remove records without species ID
-    group_by(trap_id) %>%                         # group by normalized pitfall
-    summarise(n_species = n_distinct(paste(genera, species))) # count unique species per pitfall
+    filter(  # remove records without species ID
+      !is.na(species), 
+      !is.na(genera),
+      !species %in% c("new sp.", "cf. new sp."),
+      !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE)
+    ) %>%
+    group_by(trap_id) %>% # group by normalized pitfall
+    summarise(
+      n_species = n_distinct(paste(genera, species)), # count unique species per pitfall
+      .groups = "drop"
+    )
   
   # Add a trap_type column based on trap_id length
   species_per_pitfall <- species_per_pitfall %>%
@@ -311,7 +342,12 @@ summaryF <- function(clean_div){
   
   # Most common species: species appearing in most pitfall traps
   most_common_species <- clean_div %>%
-    filter(!is.na(genera) & !is.na(species)) %>%  # remove any rows with missing genus or species
+    filter( # remove any rows with missing genus or species
+      !is.na(genera),
+      !is.na(species),
+      !species %in% c("new sp.", "cf. new sp."),
+      !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE)
+    ) %>%
     mutate(genus_species = paste(genera, species, sep = " "),
            trap_type = if_else(str_length(trap_id) == 7, "Subterranean", "Standard")) %>%
     group_by(trap_type, genus_species) %>%
@@ -324,7 +360,12 @@ summaryF <- function(clean_div){
   
   # Most abundant: sum of number_caught
   most_abundant_species <- clean_div %>%
-    filter(!is.na(genera) & !is.na(species)) %>%  # remove rows with missing genus or species
+    filter( # remove any rows with missing genus or species
+      !is.na(genera),
+      !is.na(species),
+      !species %in% c("new sp.", "cf. new sp."),
+      !grepl("^sp\\.\\s*\\d+$", species, ignore.case = TRUE)
+    ) %>%
     mutate(genus_species = paste(genera, species, sep = " "),
            trap_type = if_else(str_length(trap_id) == 7, "Subterranean", "Standard")) %>%
     group_by(trap_type, genus_species) %>%
@@ -400,33 +441,33 @@ summaryF <- function(clean_div){
   # Most common genus in standard pitfalls
   most_common_genus_sd <- most_common_genus %>%
     filter(trap_type == "Standard") %>%
-    slice_max(n, n = 15) %>%
+    slice_max(n, n = 15, with_ties = TRUE) %>%
     arrange(desc(n))
   plot_pres_sd_genus <- plotF(most_common_genus_sd, genera)
   
   # Most common genus in subterranean pitfalls
   most_common_genus_sub <- most_common_genus %>%
     filter(trap_type == "Subterranean") %>%
-    slice_max(n, n = 15) %>%
+    slice_max(n, n = 15, with_ties = TRUE) %>%
     arrange(desc(n))
   plot_pres_sub_genus <- plotF(most_common_genus_sub, genera)
   
   # Most abundant genus in standard pitfalls
   most_abundant_genus_sd <- most_abundant_genus %>%
     filter(trap_type == "Standard") %>%
-    slice_max(n, n = 15) %>%
+    slice_max(n, n = 15, with_ties = TRUE) %>%
     arrange(desc(n))
   plot_ab_sd_genus <- plotF(most_abundant_genus_sd, genera)
   
   # Most abundant genus in subterranean pitfalls
   most_abundant_genus_sub <- most_abundant_genus %>%
     filter(trap_type == "Subterranean") %>%
-    slice_max(n, n = 15) %>%
+    slice_max(n, n = 15, with_ties = TRUE) %>%
     arrange(desc(n))
   plot_ab_sub_genus <- plotF(most_abundant_genus_sub, genera)
   
   return(list(taxa_list,n_taxa,abundance_pitfall,abundance_subterranean,abundance_by_level,unique_taxa_counts,species_summary_by_type,
-              most_common_species,most_abundant_species,plot_pres_sd_genus,plot_pres_sub_genus,plot_ab_sd_genus,plot_ab_sub_genus))
+              most_common_species,most_abundant_species,most_common_genus,most_abundant_genus,plot_pres_sd_genus,plot_pres_sub_genus,plot_ab_sd_genus,plot_ab_sub_genus))
 }
 
 ############################################
@@ -443,10 +484,12 @@ unique_taxa_counts <- resSum[[6]]
 species_summary_by_type <- resSum[[7]]
 most_common_species <- resSum[[8]]
 most_abundant_species <- resSum[[9]]
-plot_common_sd <- resSum[[10]] 
-plot_common_sub <- resSum[[11]]
-plot_ab_sd <- resSum[[12]]
-plot_ab_sub <- resSum[[13]]
+most_common_genus <- resSum[[10]]
+most_abundant_genus <- resSum[[11]]
+plot_common_sd <- resSum[[12]] 
+plot_common_sub <- resSum[[13]]
+plot_ab_sd <- resSum[[14]]
+plot_ab_sub <- resSum[[15]]
 
 #################
 # INSPECT OUTPUTS (manually)
@@ -461,6 +504,7 @@ n_taxa
 # Total abundance
 abundance_pitfall
 abundance_subterranean
+abundance_pitfall+abundance_subterranean
 
 # Percentage of individuals identified to order,family,genera and species
 (1-sum(clean_div[is.na(clean_div$order),"number_caught"])/total_abundance)*100
@@ -482,6 +526,12 @@ most_common_species
 
 # Most abundant species overall
 most_abundant_species
+
+# Most common genus in pitfalls, for standard and subterranean pitfalls
+most_common_genus
+
+# Most abundant genus overall
+most_abundant_genus
 
 ############
 # SAVE PLOTS
