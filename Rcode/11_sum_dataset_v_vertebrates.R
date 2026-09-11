@@ -22,7 +22,8 @@ library(dplyr)
 # DEFINE WORKING DIRECTORY
 ##########################
 
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
+# Set the path to the project directory
+pathRepo <- "path/to/BUGS_project-main/"
 
 ####################
 # LOAD CLEAN DATASET
@@ -458,15 +459,15 @@ broad_category_summary
 # SAVE PLOTS
 ############
 
-fig_path <- paste0(pathRepo, "working_files/figures")
+fig_path <- paste0(pathRepo, "figures")
 if (!dir.exists(fig_path)) {
   dir.create(fig_path, recursive = TRUE)
 }
 setwd(fig_path)
 
-plot_ung_occurrence
-plot_non_ung_occurrence
 plot_ung_frequency
+plot_ung_occurrence
 plot_non_ung_frequency
-# Export plots at 820 x 818 px for later assembly in a graphics editing environment.
+plot_non_ung_occurrence
+# Export plots at 820 x 818 px for later assembly in a graphics editing environment (Figure_v).
 

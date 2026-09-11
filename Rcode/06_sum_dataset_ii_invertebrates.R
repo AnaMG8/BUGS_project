@@ -25,8 +25,8 @@ library(patchwork)
 # DEFINE WORKING DIRECTORY
 ##########################
 
-# Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
+# Set the path to the project directory
+pathRepo <- "path/to/BUGS_project-main/"
 
 ####################
 # LOAD CLEAN DATASET
@@ -308,7 +308,7 @@ setwd(fig_path)
 plot_dataset_ii
 
 ggsave(
-  filename = "dataset_ii.png",
+  filename = "Figure_ii.png",
   plot = plot_dataset_ii,
   width = 9,
   height = 7,

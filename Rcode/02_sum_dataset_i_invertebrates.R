@@ -24,8 +24,8 @@ library(magick)
 # DEFINE WORKING DIRECTORY
 ##########################
 
-# Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
+# Set the path to the project directory
+pathRepo <- "path/to/BUGS_project-main/"
 
 ####################
 # LOAD CLEAN DATASET
@@ -547,5 +547,5 @@ plot_common_sd
 plot_common_sub
 plot_ab_sd
 plot_ab_sub
-# Export plots at 820 x 818 px for later assembly in a graphics editing environment.
+# Export plots at 820 x 818 px for later assembly in a graphics editing environment (Figure_i).
 

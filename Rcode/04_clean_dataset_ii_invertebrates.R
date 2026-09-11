@@ -20,8 +20,8 @@ library(writexl)
 # DEFINE WORKING DIRECTORY
 ##########################
 
-# Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
+# Set the path to the project directory
+pathRepo <- "path/to/BUGS_project-main/"
 
 # Define study period for pitfall trap sampling
 startDate <- "2023-08-02"

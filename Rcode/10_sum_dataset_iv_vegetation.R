@@ -26,8 +26,8 @@ library(grid)
 # DEFINE WORKING DIRECTORY
 ##########################
 
-# Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
+# Set the path to the project directory
+pathRepo <- "path/to/BUGS_project-main/"
 
 ####################
 # LOAD CLEAN DATASET
@@ -760,7 +760,7 @@ setwd(fig_path)
 plot_vegetation_cover
 
 ggsave(
-  filename = "dataset_iv.png",
+  filename = "Figure_iv.png",
   plot = plot_vegetation_cover,
   width = 9,
   height = 7,

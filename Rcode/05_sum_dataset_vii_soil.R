@@ -21,8 +21,8 @@ library(lubridate)
 # DEFINE WORKING DIRECTORY
 ##########################
 
-# Replace with your actual path
-pathRepo <- "/Users/ana/Library/CloudStorage/OneDrive-UNIVERSIDADDESEVILLA/Documentos/Projects/SoilProject/SoilDataPaper/"
+# Set the path to the project directory
+pathRepo <- "path/to/BUGS_project-main/"
 
 ####################
 # LOAD CLEAN DATASET
@@ -223,6 +223,6 @@ graphics.off()
 quartz(width = 8, height = 9)
 plot
 
-dev.copy(png, "dataset_vii.png", width = 8, height = 9, units = "in", res = 400)
+dev.copy(png, "Figure_vii.png", width = 8, height = 9, units = "in", res = 400)
 dev.off()
 
