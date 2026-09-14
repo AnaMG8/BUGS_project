@@ -292,7 +292,7 @@ macrohabitat_levels <- resSum[[6]]
 #################
 
 # Total study area (ha)
-total_study_area
+total_study_area # 7,294 ha according to title deeds
 
 # Area and percentage of each land-use type
 land_use_area
