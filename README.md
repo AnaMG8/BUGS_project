@@ -148,7 +148,7 @@ Users should cite both the archived dataset and the associated Data Descriptor w
 
 ### Dataset
 
-Morales-González, A., Jubber, W.R., Abegg, D., Behr, D.M., Bird, T.L., Deschodt, C., Fuller, A., Gómez-Peña, G., Graf, K.C., Haddad, C.R., Huber, S., Kamiński, M.J., Mbongiseni, M., Ozgul, A., Yáñez da Silva, C.  & Paniw, M. (2026). A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
+Morales-González, A., Jubber, W.R., Abegg, D., Behr, D.M., Bird, T.L., Deschodt, C., Fuller, A., Gómez-Peña, G., Graf, K.C., Haddad, C.R., Huber, S., Kamiński, M.J., Mbongiseni, M., Ozgul, A., Yáñez da Silva, C.  & Paniw, M. (2026). A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands* (v2.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
 
 ### Data Descriptor
 
