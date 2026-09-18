@@ -6,7 +6,7 @@ This repository contains the data and reproducible workflows associated with the
 
 The repository provides raw data, curated datasets, and reproducible R workflows used to generate the data products described in the accompanying Data Descriptor:
 
-**Morales-González, A., Jubber, W.R., Abegg, D., Behr, D.M., Bird, T.L., Deschodt, C., Fuller, A., Gómez-Peña, G., Graf, K.C., Haddad, C.R., Huber, S., Kamiński, M.J., Manser, M.B., Mbongiseni, M., Ozgul, A., Yáñez da Silva, C.  & Paniw, M.**
+**Morales-González, A., Jubber, W.R., Abegg, D., Behr, D.M., Bird, T.L., Deschodt, C., Fuller, A., Gómez-Peña, G., Graf, K.C., Haddad, C.R., Huber, S., Kamiński, M.J., Mbongiseni, M., Ozgul, A., Yáñez da Silva, C.  & Paniw, M.**
 *A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands.*
 
 The database integrates information on:
@@ -148,7 +148,7 @@ Users should cite both the archived dataset and the associated Data Descriptor w
 
 ### Dataset
 
-Morales-González, A., Jubber, W.R., Abegg, D., Behr, D.M., Bird, T.L., Deschodt, C., Fuller, A., Gómez-Peña, G., Graf, K.C., Haddad, C.R., Huber, S., Kamiński, M.J., Manser, M.B., Mbongiseni, M., Ozgul, A., Yáñez da Silva, C.  & Paniw, M. (2026). A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
+Morales-González, A., Jubber, W.R., Abegg, D., Behr, D.M., Bird, T.L., Deschodt, C., Fuller, A., Gómez-Peña, G., Graf, K.C., Haddad, C.R., Huber, S., Kamiński, M.J., Mbongiseni, M., Ozgul, A., Yáñez da Silva, C.  & Paniw, M. (2026). A fine-grained multitrophic biodiversity and environmental dataset for understanding global change impacts in drylands* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.18376603
 
 ### Data Descriptor
 
